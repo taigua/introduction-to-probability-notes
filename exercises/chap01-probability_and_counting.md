@@ -35,6 +35,41 @@ not willing to eat at the same place twice in a row (or more)?
 
 周一可以选10家餐厅，周二可以选9家，周三可以选9家，以此类推，总共有：$10 * 9^4 = 65610$ 种可能性。
 
+**Problem 4**. A *round-robin tournament* is being held with n tennis players; this means that every
+player will play against every other player exactly once.
+
+(a) How many possible outcomes are there for the tournament (the outcome lists out
+who won and who lost for each game)?
+
+一共有$\binom n 2$场比赛，每个比赛有两种结果（A赢或者A输），所以一共有$2^{\binom n 2}$种结果。
+
+(b) How many games are played in total?
+
+每两个人要比赛一场，所以一共有$\binom n 2$场比赛
+
+**Problem 5**. A *knock-out tournament* is being held with $2^n$ tennis players. This means that for each
+round, the winners move on to the next round and the losers are eliminated, until only
+one person remains. For example, if initially there are $2^4 = 16$ players, then there are
+8 games in the first round, then the 8 winners move on to round 2, then the 4 winners
+move on to round 3, then the 2 winners move on to round 4, the winner of which is
+declared the winner of the tournament. (There are various systems for determining who
+plays whom within a round, but these do not matter for this problem.)
+
+(a) How many rounds are there?
+
+每轮淘汰掉一半人，所以一共有$\log 2^n = n$轮。
+
+(b) Count how many games in total are played, by adding up the numbers of games
+played in each round.
+
+第一轮$2^{n-1}$场比赛，第二轮$2^{n-2}$场比赛，以此类推，总共有$\sum\limits_{i=0}^{n-1} 2^{i} = 2^n - 1$场比赛。
+
+(c) Count how many games in total are played, this time by directly thinking about it
+without doing almost any calculation.
+Hint: How many players need to be eliminated?
+
+每场比赛淘汰掉一个人，一共需要淘汰至只剩一个人，所以一共$2^n - 1$场比赛。
+
 # Story proofs
 
 **Problem 15**. Give a story proof that $\sum_{k=0}^n \binom{n}{k} = 2^n$.
