@@ -70,6 +70,18 @@ Hint: How many players need to be eliminated?
 
 每场比赛淘汰掉一个人，一共需要淘汰至只剩一个人，所以一共$2^n - 1$场比赛。
 
+**Problem 6**. There are 20 people at a chess club on a certain day. They each find opponents and
+start playing. How many possibilities are there for how they are matched up, assuming
+that in each game it does matter who has the white pieces (in a chess game, one player
+has the white pieces and the other player has the black pieces)?
+
+(1) 从20个人里面挑10个人执白子，让他们分别挑选自己的对手，因此一共有$\binom{20}{10} \times 10!$种可能。
+
+(2) 把20个人排成一排，相邻的两个组成一组，则有$20!$种可能性，但是组的顺序不重要，所以一共有$\frac{20!}{10!}$种可能。
+
+(3) 从20个人里挑2个人排列，再从18个人里挑2个人排列，以此类推，生成10个组，10个组的顺序不重要，所以一共有
+$\frac{(20)_2(18)_2(16)_2...(2)_2}{10!} = \frac{20!}{10!}$种可能。
+
 # Story proofs
 
 **Problem 15**. Give a story proof that $\sum_{k=0}^n \binom{n}{k} = 2^n$.
@@ -78,9 +90,37 @@ Hint: How many players need to be eliminated?
 那么$\binom{n}{k}$就是从$n$个人里选$k$个人的可能性，加起来就是总共的可能性。
 换一种思路，对$n$个人中的每个人来说，有被选中和没被选中两种可能，因此一共是$2^n$种可能性。
 
+**Problem 16**. Show that for all positive integers $n$ and $k$ with $n \ge k$,
+
+$$
+\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k},
+$$
+
+doing this in two ways: (a) algebraically and (b) with a story, giving an interpretation
+for why both sides count the same thing.
+
+Hint for the story proof: Imagine an organization consisting of $n + 1$ people, with one
+of them pre-designated as the president of the organization.
+
+(a) algebraically
+
+$$
+\begin{align*}
+\binom{n}{k} + \binom{n}{k - 1} &= \frac{n!}{k!(n-k)!} + \frac{n!}{(k-1)!(n-k+1)!}\\
+&= \frac{(n-k+1)n! + k*n!}{k!(n-k+1)!}\\
+&= \frac{(n+1)n!-k*n!+k*n!}{k!(n-k+1)!}\\
+&= \frac{(n+1)!}{k!(n-k+1)!}\\
+&= \binom{n+1}{k}
+\end{align*}
+$$
+
+(b) with a story
+
+假设有$n+1$个人的委员会，其中1个人是委员会主席，现在要从这$n+1$个人种选择$k$个人组成一个小组，有多少种方式？这相当于从$n+1$个人种选择$k$个人，即$\binom{n+1}{k}$种方式。再换一种思路，选$k$个人有种方式，一种是选了主席，有$\binom{n}{k-1}$种方式；另一种是没有选主席，有$\binom{n}{k}$种方式。所以$\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$
+
 # Naive definition of probability
 
-**Problem 2**. Three people get into an empty elevator at the first floor of a building that has 10
+**Problem 23**. Three people get into an empty elevator at the first floor of a building that has 10
 floors. Each presses the button for their desired floor (unless one of the others has already pressed that button).
 Assume that they are equally likely to want to go to floors 2 through 10 (independently of each other).
 What is the probability that the buttons for 3 consecutive floors are pressed?
@@ -91,6 +131,11 @@ What is the probability that the buttons for 3 consecutive floors are pressed?
 $$
 \frac{3! * 7}{9^3} \approx 0.0576
 $$
+
+**Problem 24**. A certain family has 6 children, consisting of 3 boys and 3 girls. Assuming that all
+birth orders are equally likely, what is the probability that the 3 eldest children are the 3 girls?
+
+6个孩子的出生顺序一共有$6!$种可能，3个年长的孩子是女孩一共有$3!3!$种可能，所以三个年长孩子是女孩的概率为$\frac{3!3!}{6!} = 0.05$
 
 # Axioms of probability
 
@@ -121,6 +166,26 @@ P(A \cap B) &= 1 - P((A \cap B)^C) \\
 P(A^C) = 1 - P(A), P(B^C) = 1 - P(B) \\
 
 \therefore P(A) + P(B) - 1 \le P(A \cap B)
+$$
+
+**Problem 44**. Let $A$ and $B$ be events. The *difference* $B - A$ is defined to be the set of all elements of
+$B$ that are not in $A$. Show that if $A \subseteq B$, then
+
+$$
+P(B - A) = P(B) - P(A)
+$$
+
+directly using the axioms of probability.
+
+$$
+\begin{align*}
+P(B-A) &= P(B\cap A^C)\\
+&= 1 - P(B^C\cup A)\\
+&= 1 - (P(B^C) + P(A) - P(A\cap B^C))\\
+&= 1 - (1-P(B) + P(A) - P(\emptyset))\\
+&= 1 - 1 + P(B) - P(A) + P(\emptyset)\\
+&= P(B) - P(A)
+\end{align*}
 $$
 
 # Inclusion-exclusion
