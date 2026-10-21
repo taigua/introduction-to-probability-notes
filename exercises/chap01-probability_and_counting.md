@@ -82,6 +82,75 @@ has the white pieces and the other player has the black pieces)?
 (3) 从20个人里挑2个人排列，再从18个人里挑2个人排列，以此类推，生成10个组，10个组的顺序不重要，所以一共有
 $\frac{(20)_2(18)_2(16)_2...(2)_2}{10!} = \frac{20!}{10!}$种可能。
 
+**Problem 7**. Two chess players, A and B, are going to play 7 games. Each game has three possible
+outcomes: a win for A (which is a loss for B), a draw (tie), and a loss for A (which is
+a win for B). A win is worth 1 point, a draw is worth 0.5 points, and a loss is worth 0
+points.
+
+(a) How many possible outcomes for the individual games are there, such that overall player A ends up with 3 wins, 2 draws, and 2 losses?
+
+从7场比赛里选3场作为赢，从4场比赛里选2场作为平，剩下2场作为输：$\binom{7}{3}\binom{4}{2} = 84$。
+
+(b) How many possible outcomes for the individual games are there, such that A ends up with 4 points and B ends up with 3 points?
+
+A拿到4分的方法有：赢4场，赢3场平2场，赢2场平4场，赢1场平6场。
+
+结果数量：$\binom{7}{4} + \binom{7}{3}\binom{4}{2} + \binom{7}{2}\binom{5}{4} + \binom{7}{1}\binom{6}{6} = 357$
+
+(c) Now assume that they are playing a best-of-7 match, where the match will end when either player has 4 points or when 7 games have been played, whichever is first.
+For example, if after 6 games the score is 4 to 2 in favor of A, then A wins the match and they don't play a 7th game. How many possible outcomes for the individual games are there, such that the match lasts for 7 games and A wins by a score of 4 to 3?
+
+从(b)的思路中我们得知，A拿到4分的方法有：赢4场，赢3场平2场，赢2场平4场，赢1场平6场。要想让比赛持续7场，那么针对以上4中情况，A必须在最后一场赢或者平。
+
+对于赢4场，有：$\binom{6}{3}$
+
+对于赢3场平2场，有：$\binom{6}{3}\binom{3}{1} + \binom{6}{2}\binom{4}{2}$
+
+对于赢2场平4场， 有：$\binom{6}{1}\binom{5}{4} + \binom{6}{3}\binom{3}{2}$
+
+对于赢1场平6场， 有：$\binom{7}{1}$
+
+结果数量：$\binom{6}{3} + \binom{6}{3}\binom{3}{1} + \binom{6}{2}\binom{4}{2} + \binom{6}{1}\binom{5}{4} + \binom{6}{3}\binom{3}{2} + \binom{7}{1} = 267$
+
+**Problem 8**. (a) How many ways are there to split a dozen people into 3 teams, where one team
+has 2 people, and the other two teams have 5 people each?
+
+从12个人中选2个：$\binom{12}{2}$，从剩下的10个人里面选5个：$\binom{10}{5}$，剩下5个人组成第三队。
+但因为两个5人队无法区分，因此一共有：$\binom{12}{2}\binom{10}{5}/2! = 8316$
+
+或者直接套用分组公式：$\frac{12!}{2!5!5!2!}$
+
+(b) How many ways are there to split a dozen people into 3 teams, where each team has 4 people?
+
+从12个人中选4个：$\binom{12}{4}$，从剩下的8个人里面选4个：$\binom{8}{4}$，剩下4个人组成第三队。
+但因为三个4人队无法区分，因此一共有：$\binom{12}{4}\binom{8}{4}/3! = 5775$
+
+或者直接套用分组公式：$\frac{12!}{4!4!4!3!}$
+
+**Problem 9**. (a) How many paths are there from the point (0, 0) to the point (110, 111) in the plane such that each step either consists of going one unit up or one unit to the right?
+
+从(0, 0)到达(110, 111)需要总共走221步，其中110步向右，剩下的111步向上，所以一共有$\binom{221}{110}$种路径。
+
+(b) How many paths are there from (0, 0) to (210, 211), where each step consists of going one unit up or one unit to the right, and the path has to go through (110, 111)?
+
+到达(110, 111)有$\binom{221}{110}$种路径，同理，从(110, 111)到达(210, 211)有$\binom{200}{100}$种路径，一共有$\binom{221}{110}\binom{200}{100}$种路径。
+
+**Problem 10**. To fulfill the requirements for a certain degree, a student can choose to take any 7 out of a list of 20 courses, with the constraint that at least 1 of the 7 courses must be a statistics course. Suppose that 5 of the 20 courses are statistics courses.
+
+(a) How many choices are there for which 7 courses to take?
+
+从20门课程里选7门一共有$\binom{20}{7}$种方式，7门课不包含统计课一共有$\binom{15}{7}$种方式，所以要拿到学位，一共有$\binom{20}{7} - \binom{15}{7}$种方式。
+
+(b) Explain intuitively why the answer to (a) is *not* $\binom{5}{1}\cdot\binom{19}{6}$.
+
+这种算法会导致重复计数，比如：
+
+- 从5门统计课中选了Stat110，从剩余19门课中选了Stat210, C1, C2, C3, C4, C5，选课结果为：Stat110, Stat210, C1-C5。
+- 从5门统计课中选了Stat210，从剩余19门课中选了Stat110, C1, C2,
+C3, C4, C5，选课结果为：Stat210, Stat110, C1-C5。
+
+这两种情况是重复的，而(b)的计算方式无法排除这种重复。
+
 # Story proofs
 
 **Problem 15**. Give a story proof that $\sum_{k=0}^n \binom{n}{k} = 2^n$.
