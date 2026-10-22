@@ -327,6 +327,23 @@ $$
 这相当于从$n+1$个人种选择$k$个人，即$\binom{n+1}{k}$种方式。再换一种思路，选$k$个人有种方式，一种是选了主席，
 有$\binom{n}{k-1}$种方式；另一种是没有选主席，有$\binom{n}{k}$种方式。所以$\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$
 
+## Problem 17
+
+Give a story proof that
+
+$$
+\sum\limits_{k=0}^n \binom{n}{k}^2 = \binom{2n}{n}
+$$
+
+for all positive integers n.
+
+**解答**：
+
+因为$\binom{n}{k} = \binom{n}{n-k}$，因此原式可写作：$\sum\limits_{k=0}^n \binom{n}{k}\binom{n}{n-k} = \binom{2n}{n}$。
+
+这就相当于从两个各有$n$个人的部门种选$n$个人组成一个团队，问一共有多少种方式。
+等式左边相当于从部门A种选$k$个人，再从部门B种选$n-k$个人，$k$取值范围从$0$到$n$。等式右边相当于把两个部门的人混在一起，从$2n$个人中选$n$个。
+
 # Naive definition of probability
 
 ## Problem 23
@@ -351,6 +368,45 @@ birth orders are equally likely, what is the probability that the 3 eldest child
 **解答**：
 
 6个孩子的出生顺序一共有$6!$种可能，3个年长的孩子是女孩一共有$3!3!$种可能，所以三个年长孩子是女孩的概率为$\frac{3!3!}{6!} = 0.05$
+
+## Problem 25
+A city with 6 districts has 6 robberies in a particular week. Assume the robberies are
+located randomly, with all possibilities for which robbery occurred where equally likely.
+What is the probability that some district had more than 1 robbery?
+
+**解答**：
+
+设事件$A$为：有某个社区发生一起以上抢劫案，事件$A$的逆事件$A^C$为：每个社区发生且只发生了一起抢劫案。
+$6$起抢劫案发生地点总共有$6^6$种可能，而每个社区发生且只发生一起抢劫案总共$6!$种可能性。
+
+因此$P(A^C) = \frac{6!}{6^6}$，则$P(A) = 1-P(A^C) = 1-\frac{6!}{6^6} \approx 0.9846$。
+
+## Problem 26
+A survey is being conducted in a city with 1 million residents. It would be far too
+expensive to survey all of the residents, so a random sample of size 1000 is chosen
+(in practice, there are many challenges with sampling, such as obtaining a complete
+list of everyone in the city, and dealing with people who refuse to participate). The
+survey is conducted by choosing people one at a time, with replacement and with equal
+probabilities.
+
+**(a)** Explain how sampling with vs. without replacement here relates to the birthday
+problem.
+
+**解答**：
+
+该问题和生日问题是同构的。
+
+对于有替代抽样，每个人就相当于生日问题中的日期（拓展为带年份的生日，这样不到三千年能涵盖一百万个不同的生日），
+抽样数就相当于生日问题中的人数。从一百万人中抽$1000$人，就相当于在有一百万个日期的情况下，问$1000$个人他们的生日。
+抽样的可能性为$1\_000\_000^{1000}$。
+
+对于无替代抽样，就相当于抽取的$1000$个人当中，没有两个人生日匹配。
+抽样的可能性为$(1\_000\_000)_{1000}$。
+
+**(b)** Find the probability that at least one person will get chosen more than once.
+
+类似于生日问题，设事件$A$为至少有个人没选中了一次以上。那么：
+$P(A) = 1 - P(A^C) = 1 - \frac{(1\_000\_000)_{1000}}{1\_000\_000^{1000}}$。
 
 # Axioms of probability
 
@@ -408,6 +464,28 @@ P(B-A) &= P(B\cap A^C)\\
 \end{align*}
 $$
 
+## Problem 45
+Let $A$ and $B$ be events. The *symmetric difference* $A \triangle B$ is defined to be the set of all
+elements that are in $A$ or $B$ but not both. In logic and engineering, this event is also
+called the $XOR$ (*exclusive or*) of $A$ and $B$. Show that
+
+$$
+P(A \triangle B) = P(A) + P(B) - 2(P \cap B)
+$$
+
+directly using the axioms of probability.
+
+**解答**：
+
+$$
+\because A \triangle B = A \cup B - A \cap B, \text{ and } A \cap B \subseteq A \cup B\\
+\begin{align*}
+\therefore P(A \triangle B) &= P(A \cup B) - P(A \cap B) \text { (according to Problem 44)}\\
+&= P(A) + P(B) - P(A \cap B) - P(A \cap B)\\
+&= P(A) + P(B) - 2P(A \cap B)
+\end{align*}
+$$
+
 # Inclusion-exclusion
 
 ## Problem 49
@@ -422,6 +500,28 @@ $$
 \begin{align*}
 P(\bigcup\limits_{i=1}^{6}A_i) &= \sum\limits_{i=1}^6 (-1)^{i+1} \binom{6}{i} \left(\frac{6 - i}{6}\right)^n \\
 &= 6\left(\frac 5 6\right)^n - 15\left(\frac 4 6\right)^n + 20\left(\frac 3 6\right)^n - 15\left(\frac 2 6\right)^n + 6\left(\frac 1 6\right)^n
+\end{align*}
+$$
+
+## Problem 50
+A card player is dealt a 13-card hand from a well-shuffled, standard deck of cards.
+What is the probability that the hand is void in at least one suit ("void in a suit" means
+having no cards of that suit)?
+
+**解答**：
+
+设事件$A_i$代表缺一种花色，则至少缺一种花色的概率为：
+
+$$
+\begin{align*}
+P(\bigcup\limits_{i=1}^{4} A_i) &= \sum\limits_{i}P(A_i) - 
+\sum\limits_{i < j}P(A_i \cap A_j) +
+\sum\limits_{i < j < k}P(A_i \cap A_j \cap A_k) -
+\sum P(A_1 \cap A_2 \cap A_3 \cap A_4)\\
+&= 4 \times \frac{\binom{39}{13}}{\binom{52}{13}} -
+\binom{4}{2} \times \frac{\binom{26}{13}}{\binom{52}{13}} +
+\binom{4}{3} \times \frac{\binom{13}{13}}{\binom{52}{13}} - 0\\
+&\approx 0.0511
 \end{align*}
 $$
 
