@@ -341,8 +341,29 @@ for all positive integers n.
 
 因为$\binom{n}{k} = \binom{n}{n-k}$，因此原式可写作：$\sum\limits_{k=0}^n \binom{n}{k}\binom{n}{n-k} = \binom{2n}{n}$。
 
-这就相当于从两个各有$n$个人的部门种选$n$个人组成一个团队，问一共有多少种方式。
-等式左边相当于从部门A种选$k$个人，再从部门B种选$n-k$个人，$k$取值范围从$0$到$n$。等式右边相当于把两个部门的人混在一起，从$2n$个人中选$n$个。
+这就相当于从两个各有$n$个人的部门中选$n$个人组成一个团队，问一共有多少种方式。
+等式左边相当于从部门A种选$k$个人，再从部门B中选剩下的$n-k$个人，$k$取值范围从$0$到$n$。
+等式右边相当于把两个部门的人混在一起，从$2n$个人中选$n$个人。
+
+## Problem 18
+Give a story proof that
+
+$$
+\sum\limits_{k=1}^{n}k\binom{n}{k}^2 = n \binom{2n-1}{n-1}
+$$
+
+for all positive integers n.
+
+*Hint:* Consider choosing a committee of size $n$ from two groups of size $n$ each, where
+only one of the two groups has people eligible to become the chair of the committee.
+
+**解答**：
+
+上式可写作：$\sum\limits_{k=1}^{n}\binom{k}{1}\binom{n}{k}\binom{n}{n-k} = \binom{n}{1}\binom{2n-1}{n-1}$。
+
+这就相当于从两个各有$n$个人的部门A和B中选$n$个人组成一个团队，且必须从部门A中选一个人做团队主席，问一共有多少种方式。
+等式左边相当于从部门A种选$k$个人，再从$k$个人中选一人做主席，然后从部门B中选剩下的$n-k$个人，$k$取值范围从$1$到$n$。
+等式右边相当于把两个部门的人混在一起，先从部门A的$n$个人中选一个当主席，再从剩下的$2n-1$个人中选$n-1$个人。
 
 # Naive definition of probability
 
@@ -407,6 +428,28 @@ problem.
 
 类似于生日问题，设事件$A$为至少有个人没选中了一次以上。那么：
 $P(A) = 1 - P(A^C) = 1 - \frac{(1\_000\_000)_{1000}}{1\_000\_000^{1000}}$。
+
+## Problem 27
+A *hash table* is a commonly used data structure in computer science, allowing for fast
+information retrieval. For example, suppose we want to store some people's phone numbers.
+Assume that no two of the people have the same name. For each name *x*, a *hash
+function h* is used, letting *h(x)* be the location that will be used to store *x*'s phone
+number. After such a table has been computed, to look up *x*'s phone number one just
+recomputes *h(x)* and then looks up what is stored in that location.
+
+The hash function *h* is deterministic, since we don't want to get different results every
+time we compute *h(x)*. But *h* is often chosen to be *pseudorandom*. For this problem,
+assume that true randomness is used. Let there be *k* people, with each person's phone
+number stored in a random location (with equal probabilities for each location, independently
+of where the other people's numbers are stored), represented by an integer
+between *1* and *n*. Find the probability that at least one location has more than one
+phone number stored there.
+
+**解答**：
+
+如果$k > n$，则至少有个位置有多于一个电话号码的概率为$1$。
+
+如果$k \le n$，则至少有个位置有多于一个电话号码的概率为：$1 - \frac{(n)_k}{n^k}$。
 
 # Axioms of probability
 
@@ -486,6 +529,28 @@ $$
 \end{align*}
 $$
 
+## Problem 46
+Let $A_1, A_2, ... , A_n$ be events. Let $B_k$ be the event exactly $k$ of the $A_i$ occur, and $C_k$ be
+the event that at least $k$ of the $A_i$ occur, for $0 \le k \le n$. Find a simple expression for
+$P(B_k)$ in terms of $P(C_k)$ and $P(C_{k+1})$.
+
+**解答**：
+
+**(1)**
+$B_k$的逆事件为：$A_i$发生个数小于$k$，或大于$k$。而$A_i$发生个数小于$k$的概率为：$1 - P(C_k)$，
+而$A_i$发生个数大于$k$的概率为：$P(C_{k+1})$，且这两个事件互斥。因此：
+
+$$
+P(B_k) = 1 - P(B_k^C) = 1 - (1 - P(C_k) + P(C_{k+1})) = P(C_k) - P(C_{k+1})
+$$
+
+**(2)**
+$B_k = C_k - C_{k+1}$，且$C_{k+1} \subseteq C_{k}$，因此：
+
+$$
+P(B_k) = P(C_k - C_{k+1}) = P(C_k) - P(C_{k+1})
+$$
+
 # Inclusion-exclusion
 
 ## Problem 49
@@ -562,3 +627,31 @@ only if *HH* occurs before *TH* occurs.
 (2) 如果第一次硬币是*H*，那么看第二次掷硬币结果。如果第二次是*H*，Martin赢；如果第二次是*T*，那么又成了情况(1)，Martin肯定输。
 
 所以综合来看，Martin赢得概率只有$1/4$。
+
+## Problem 57
+Take a deep breath before attempting this problem. In the book *Innumeracy*, John
+Allen Paulos writes:
+
+> Now for better news of a kind of immortal persistence. First, take a deep
+  breath. Assume Shakespeare's account is accurate and Julius Caesar gasped
+  ["Et tu, Brute!"] before breathing his last. What are the chances you just
+  inhaled a molecule which Caesar exhaled in his dying breath?
+
+Assume that one breath of air contains $10^22$ molecules, and that there are $10^44$ molecules
+in the atmosphere. (These are slightly simpler numbers than the estimates that Paulos
+gives; for the purposes of this problem, assume that these are exact. Of course, in reality
+there are many complications such as different types of molecules in the atmosphere,
+chemical reactions, variation in lung capacities, etc.)
+
+Suppose that the molecules in the atmosphere now are the same as those in the atmosphere
+when Caesar was alive, and that in the $2000$ years or so since Caesar, these
+molecules have been scattered completely randomly through the atmosphere. Also assume
+that Caesar's last breath was sampled *without* replacement but that your breathing
+is sampled *with* replacement (without replacement makes more sense but with replacement
+is easier to work with, and is a good approximation since the number of molecules
+in the atmosphere is so much larger than the number of molecules in one breath).
+
+Find the probability that at least one molecule in the breath you just took was shared
+with Caesar's last breath, and give a simple approximation in terms of $\mathit{e}$
+
+*Hint*: As discussed in the math appendix, $(1 + \frac{x}{n})^n \approx \mathit{e}^x$ for $n$ large.
