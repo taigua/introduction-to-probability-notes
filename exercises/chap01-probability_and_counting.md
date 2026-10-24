@@ -17,7 +17,7 @@ $$
 
 **解答**：
 
-第1位有8中可能性（2-9），其他6位有10中可能性，所以有：$8 \times 10^6 = 8\_000\_000$
+第1位有8中可能性（2-9），其他6位有10中可能性，所以有：$8 \times 10^6 = 8\_000\_000$。
 
 **(b)** Re-solve (a), except now assume also that the phone number is not allowed to start
 with 911 (since this is reserved for emergency use, and it would not be desirable for the
@@ -365,6 +365,21 @@ only one of the two groups has people eligible to become the chair of the commit
 等式左边相当于从部门A种选$k$个人，再从$k$个人中选一人做主席，然后从部门B中选剩下的$n-k$个人，$k$取值范围从$1$到$n$。
 等式右边相当于把两个部门的人混在一起，先从部门A的$n$个人中选一个当主席，再从剩下的$2n-1$个人中选$n-1$个人。
 
+## Problem 19
+Give a story proof that
+
+$$
+\sum\limits_{k=2}^n \binom{k}{2}\binom{n-k+2}{2} = \binom{n+3}{5}
+$$
+
+for all integers $n \ge 2$.
+
+*Hint*: Consider the middle number in a subset of $\{1, 2, ..., n + 3\}$ for size 5.
+
+**解答**：
+
+假设我们要从$1$到$n+3$中选取5个数（$n \ge 2$），我们可以从$2$到$n$中选一个数$k$，然后从小于等于$k$的数中选$2$个，从大于$k$的数中选$3$个。上述等式的左边就是这种选法的体现，右边是直接从$n+3$中选$5$个数。得证。
+
 # Naive definition of probability
 
 ## Problem 23
@@ -450,6 +465,48 @@ phone number stored there.
 如果$k > n$，则至少有个位置有多于一个电话号码的概率为$1$。
 
 如果$k \le n$，则至少有个位置有多于一个电话号码的概率为：$1 - \frac{(n)_k}{n^k}$。
+
+## Problem 28
+A college has 10 time slots for its courses, and blithely assigns courses to completely
+random time slots, independently. The college offers exactly 3 statistics courses. What
+is the probability that 2 or more of the statistics courses are in the same time slot?
+
+**解答**：
+
+设事件$A$为2个或者更多的统计课位于同一时间槽，则$A^C$为所有统计课程位于不同时间槽。
+
+$$
+P(A) = 1 - P(A^C) = 1 - \frac{(10)_3}{10^3} = 0.28
+$$
+
+## Problem 29
+For each part, decide whether the blank should be filled in with $=$, $<$, or $>$, and give
+a clear explanation.
+
+**(a)** (probability that the total after rolling 4 fair dice is 21) $>$ (probability that the
+total after rolling 4 fair dice is 22).
+
+**解答**：
+
+掷出$21$有4，5，6，6（12种可能性），3，6，6，6（4种可能性）和5，5，5，6（4种可能性）。
+
+掷出$22$有5，5，6，6（6种可能性）和4，6，6，6（4种可能性）。
+
+**(b)** (probability that a random 2-letter word is a palindrome) $=$ (probability that a
+random 3-letter word is a palindrome).
+
+**解答**：
+
+2个字母的单词和三个字母的单词是回文的要求是一样的：都是第一个字母和最后一个字母相同。因此概率相同。
+
+## Problem 30
+With definitions as in the previous problem, find the probability that a random n-letter
+word is a palindrome for $n = 7$ and for $n = 8$.
+
+**解答**：
+
+假设是26个小写字母组成的单词，$n = 7$和$n = 8$是回文的情况是一样的，都是前4个字母可以任意取。
+当$n=7$时，$P = \frac{26^4}{26^7} = \frac{1}{26^3}$；当$n=8$时，$P = \frac{26^4}{26^8}=\frac{1}{26^4}$。
 
 # Axioms of probability
 
@@ -655,3 +712,12 @@ Find the probability that at least one molecule in the breath you just took was 
 with Caesar's last breath, and give a simple approximation in terms of $\mathit{e}$
 
 *Hint*: As discussed in the math appendix, $(1 + \frac{x}{n})^n \approx \mathit{e}^x$ for $n$ large.
+
+**解答**：
+
+令事件$A$为一次呼吸包含至少一个凯撒分子。则事件$A^C$为一次呼吸不包含任何凯撒分子。
+
+因为假设每次呼吸是有替代采样，因此一次呼吸中某个分子是凯撒分子的概率为$\frac{10^{22}}{10^{44}} = \frac{1}{10^{22}}$，不是凯撒分子的概率为$1-\frac{1}{10^{22}}$。因而，一次呼吸中不包含任何凯撒分子的
+概率为$(1-\frac{1}{10^{22}})^{10^{22}}$，令$x=-1$，有$(1-\frac{1}{10^{22}})^{10^{22}} \approx \mathit{e}^{-1}$。
+
+所以：$P(A) = 1-P(A^C) \approx 1 - \mathit{e}^{-1} \approx 0.6321$。
