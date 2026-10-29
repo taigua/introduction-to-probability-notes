@@ -378,7 +378,54 @@ for all integers $n \ge 2$.
 
 **解答**：
 
-假设我们要从$1$到$n+3$中选取5个数（$n \ge 2$），我们可以从$2$到$n$中选一个数$k$，然后从小于等于$k$的数中选$2$个，从大于$k$的数中选$3$个。上述等式的左边就是这种选法的体现，右边是直接从$n+3$中选$5$个数。得证。
+假设我们要从$1$到$n+3$中选取5个数（$n \ge 2$），我们可以从$2$到$n$中选一个数$k$，然后从小于等于$k$的数中选$2$个，从大于$k$的数中选$3$个。
+上述等式的左边就是这种选法的体现，右边是直接从$n+3$中选$5$个数。得证。
+
+## Problem 20
+
+**(a)** Show using a story proof that
+
+$$
+\binom{k}{k} + \binom{k+1}{k} + \binom{k+2}{k} + ... + \binom{n}{k} = \binom{n+1}{k+1},
+$$
+
+where $n$ and $k$ are positive integers with $n \ge k$. This is called the *hockey stick identity*.
+
+*Hint*: Imagine arranging a group of people by age, and then think about the oldest person in a chosen subgroup.
+
+**解答**：
+
+我们从$n+1$个人中抽$k+1$个人组成小组，假设小组中年纪最大的人是X。
+如果X也是全体中年纪最大的，那么组成小组有$\binom{n}{k}$种选择；
+如果X是全体中年级第二大的，那么组成小组有$\binom{n-1}{k}$种选择（因为全体中年纪最大的显然不能在小组中），
+以此类推，如果全体中有$j$个人年纪比X小，那么组成小组有$\binom{j}{k}$种可能性。所以
+
+$$
+\sum\limits_{j=k}^{n}\binom{j}{k} = \binom{n+1}{k+1}
+$$
+
+**(b)** Suppose that a large pack of Haribo gummi bears can have anywhere between $30$
+and $50$ gummi bears. There are $5$ delicious avors: pineapple (clear), raspberry (red),
+orange (orange), strawberry (green, mysteriously), and lemon (yellow). There are $0$ nondelicious
+avors. How many possibilities are there for the composition of such a pack of
+gummi bears? You can leave your answer in terms of a couple binomial coefficients, but
+not a sum of lots of binomial coefficients.
+
+**解答**：
+
+这是一个有替代无序抽样问题，根据`Bose-Einstein`，我们知道，对于有$5$种口味的软糖，组成一包$i$个软糖的方式有
+$\binom{i + 5 - 1}{i}=\binom{i+4}{i}=\binom{i+4}{4}$。
+
+因此组成一包含有$30$到$50$个软糖的可能性有：
+
+$$
+\begin{align*}
+\sum\limits_{i=30}^{50} \binom{i+4}{4} &= \sum\limits_{j=34}^{54} \binom{j}{4}\\
+&= \sum\limits_{j=4}^{54} \binom{j}{4} - \sum\limits_{j=4}^{33} \binom{j}{4}\\
+&= \binom{55}{5} - \binom{34}{5}\\
+&= 3200505
+\end{align*}
+$$
 
 # Naive definition of probability
 
