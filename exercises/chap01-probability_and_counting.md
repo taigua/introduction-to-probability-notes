@@ -507,6 +507,12 @@ $$
 
 *Hint*: Consider a round-robin tournament (see Exercise 4).
 
+**解答**：
+
+假设$n+1$个人要循环比赛，每个人都需要和其他所有人比赛一次。我们把$n+1$个人从左往右排成一排，
+第一个人要和右边的$n$个人比赛，第二个人要和右边的$n-1$个人比赛，以此类推，第n个人要和最后一个人比赛，
+因此一共要进行$n + n - 1 + ... + 2 + 1$场比赛。因此$1 + 2 + ... + n = \binom{n+1}{2}$。
+
 **(b)** Give a story proof of the identity
 
 $$
@@ -519,6 +525,29 @@ the right-hand side in (a) is the right-hand side in (b).
 *Hint*: Imagine choosing a number between 1 and n and then choosing 3 numbers between
 0 and n smaller than the original number, with replacement. Then consider cases based
 on how many distinct numbers were chosen.
+
+**解答**：
+
+假设选了数字$i\ (1 \le i \le n)$，我们将从数字$0$到$i-1$中有替代抽取三个数字，因此一共有$i^3$种可能性。
+等式左边就是从$1$到$n$种抽一个数字，再从$0$到$n$中抽三个选中数字小的数字的全部可能性。
+
+我们选中3个数字一共有三种情况：
+
+- 三个数字都不相同
+- 三个数字都相同
+- 三个数字有两个相同
+
+对于三个数字都相同的情况，相当于从$n+1$个数字中抽$4$个数字，最大的数字作为第一次抽取的数字，其他$3$个
+数字进行排列，因此一共有$3!\binom{n+1}{4}=6\binom{n+1}{4}$种可能性。
+
+对于三个数字都相同的情况，相当于从$n+1$个数字种抽$2$个数字，最大的数字作为第一次抽取的数字，剩下的数字
+使用三次，因此一共有$\binom{n+1}{2}$种可能性。
+
+对于三个数字有两个相同的情况，相当于从$n+1$个数字中抽$3$个数字，最大的数字作为第一次抽取的数字，其他$2$个
+数字中每个数字都可以使用两次，因此一共有$2\frac{3!}{2!} = 3!$种排列，也就有$6\binom{n+1}{3}$种可能性。
+
+因此，$1^3 + 2^3 + ... + n^3 = 6\binom{n+1}{4} + 6\binom{n+1}{3} + \binom{n+1}{2}$。
+
 
 # Naive definition of probability
 
@@ -647,6 +676,26 @@ word is a palindrome for $n = 7$ and for $n = 8$.
 
 假设是26个小写字母组成的单词，$n = 7$和$n = 8$是回文的情况是一样的，都是前4个字母可以任意取。
 当$n=7$时，$P = \frac{26^4}{26^7} = \frac{1}{26^3}$；当$n=8$时，$P = \frac{26^4}{26^8}=\frac{1}{26^4}$。
+
+## Problem 31
+Elk dwell in a certain forest. There are $N$ elk, of which a simple random sample of
+size $n$ are captured and tagged ("simple random sample" means that all $\binom{N}{n}$ sets of
+$n$ elk are equally likely). The captured elk are returned to the population, and then a new
+sample is drawn, this time with size $m$. This is an important method that is widely used
+in ecology, known as *capture-recapture*. What is the probability that exactly $k$ of the $m$
+elk in the new sample were previously tagged? (Assume that an elk that was captured
+before doesn't become more or less likely to be captured again.)
+
+**解答**：
+
+从$N$头驼鹿种选择$m$头，一共有$\binom{N}{m}$种可能。要保证其种有$k$头被二次选中，我们需要从$n$头已
+标记驼鹿种选择$k$头，再从剩余$N-n$头未被标记的驼鹿种选择$m-k$头，因此概率为：
+
+$$
+\frac{\binom{n}{k}\binom{N-n}{m-k}}{\binom{N}{m}}
+$$
+
+其中$\ 0\le k \le n$。
 
 # Axioms of probability
 
