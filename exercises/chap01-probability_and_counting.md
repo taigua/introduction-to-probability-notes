@@ -697,6 +697,63 @@ $$
 
 其中$\ 0\le k \le n$。
 
+## Problem 32
+Four cards are face down on a table. You are told that two are red and two are black, and
+you need to guess which two are red and which two are black. You do this by pointing
+to the two cards you're guessing are red (and then implicitly you're guessing that the
+other two are black). Assume that all configurations are equally likely, and that you do
+not have psychic powers. Find the probability that exactly $j$ of your guesses are correct,
+for $j = 0, 1, 2, 3, 4$.
+
+**解答**：
+
+两张红牌，两张黑牌排列的方式一共有$\frac{4!}{2!2!} = 6$种。设$k$是猜对红牌位置个数。
+
+- 当$k=0$时，说明猜测是红牌的位置放的是黑牌，显然另外两个位置是红牌，因此只有1种情况。
+  此时一个位置也没猜对$j=0$；
+- 当$k=1$时，说明两个红牌位置有一个是对的，另外一个红牌位置必然是两张黑牌中的一张，因此有4种情况。
+  此时除了红牌位置之外，还猜对了一张黑牌位置$j=2$；
+- 当$k=2$时，说明红牌位置猜对了，那么另外两个位置必然是黑牌，因此只有1种情况。
+  此时四张牌都猜对了$j=4$。
+
+综上：$P(j=0) = \frac{1}{6}$, $P(j=2)=\frac{2}{3}$, $P(j=1)=P(j=3)=0$, $P(j=4)=\frac{1}{6}$。
+
+## Problem 33
+A jar contains $r$ red balls and $g$ green balls, where $r$ and $g$ are fixed positive integers.
+A ball is drawn from the jar randomly (with all possibilities equally likely), and then a
+second ball is drawn randomly.
+
+**(a)** Explain intuitively why the probability of the second ball being green is the same
+as the probability of the first ball being green.
+
+**解答**：
+
+连续抽两个球可以看作同时抽两个球，此时每个球是绿球的概率是一样的，都等于$\frac{g}{r+g}$。
+
+**(b)** Define notation for the sample space of the problem, and use this to compute the
+probabilities from **(a)** and show that they are the same.
+
+**解答**：
+
+设$r$个红球编号从$R_1$到$R_r$，$g$个绿球的编号从$G_1$到$G_g$。样本空间$\Omega = \{(a, b)\}$，
+其中$a, b \in \{R_1, ..., R_r, G_1, ..., G_g\}$，且$a \ne b$。
+
+第一个球为绿球的概率是：$\frac{\binom{g}{1}\binom{r+g-1}{1}}{(r+g)_2} = \frac{g*(r+g-1)}{(r+g)(r+g-1)} = \frac{g}{r+g}$。
+
+第二个球为绿球的概率是：$\frac{\binom{g}{1}\binom{g-1}{1} + \binom{r}{1}\binom{g}{1}}{(r+g)_2}=\frac{g(g-1) + rg}{(r+g)(r+g-1)} = \frac{g}{r+g}$
+
+**(c)** Suppose that there are 16 balls in total, and that the probability that the two balls
+are the same color is the same as the probability that they are different colors. What
+are $r$ and $g$ (list all possibilities)?
+
+**解答**：
+
+两个球是同一种颜色的概率是：$\frac{\binom{r}{1}\binom{r-1}{1} + \binom{g}{1}\binom{g-1}{1}}{16_2} = \frac{r(r-1) + g(g-1)}{16*15}$。
+
+两个球不是同一种颜色的概率是：$\frac{\binom{r}{1}\binom{g}{1} + \binom{g}{1}\binom{r}{1}}{16_2} = \frac{2rg}{16*15}$。
+
+由此，$r(r-1) + g(g-1) = 2rg, \ r + g = 16$，解该方程可知：$r = 10, \ g = 6$ 或 $r = 6, \ g = 10$。
+
 # Axioms of probability
 
 ## Problem 43
