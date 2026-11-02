@@ -791,6 +791,25 @@ A group of 30 dice are thrown. What is the probability that 5 of each of the val
 
 30个骰子总共有$6^{30}$种可能，1-6各出现5次总共有$\frac{30!}{(5!)^6}$种可能，因此概率为$\frac{30!}{(5!)^66^{30}}$。
 
+## Problem 37
+A deck of cards is shuffed well. The cards are dealt one by one, until the first time an
+ace appears.
+
+**(a)** Find the probability that no kings, queens, or jacks appear before the first ace.
+
+**解答**：
+
+我们只需要关注全部J、Q、K和A，一共十六张牌，其余的牌无关紧要。对于这16张牌，第一张牌是A的概率为$\frac{4}{16}=\frac{1}{4}$。
+因此没有J、Q或者K出现在A之前的概率为$\frac{1}{4}$。
+
+**(b)** Find the probability that exactly one king, exactly one queen, and exactly one jack
+appear (in any order) before the first ace.
+
+**解答**：
+
+同样只需要关注全部J、Q、K和A，一共十六张牌。全部16张牌排列一共有$16!$种可能，恰好只有一张J、Q和K出现在第一张A之前
+意味着前三张牌必须是J、Q和K（任意排列），第四张牌必须是A，一共有$4^3\cdot3!\cdot4\cdot12!$种可能。因此，所求概率为$\frac{4^3\cdot3!\cdot4\cdot12!}{16!}=\frac{16}{455}$。
+
 # Axioms of probability
 
 ## Problem 43
