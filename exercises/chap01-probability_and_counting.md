@@ -754,6 +754,43 @@ are $r$ and $g$ (list all possibilities)?
 
 由此，$r(r-1) + g(g-1) = 2rg, \ r + g = 16$，解该方程可知：$r = 10, \ g = 6$ 或 $r = 6, \ g = 10$。
 
+## Problem 34
+
+A random 5-card poker hand is dealt from a standard deck of cards. Find the probability
+of each of the following possibilities (in terms of binomial coefficients).
+
+**(a)** A flush (all 5 cards being of the same suit; do not count a royal 
+flush, which is a flush with an ace, king, queen, jack, and 10).
+
+**解答**：
+
+52张牌抽取5张总共有$\binom{52}{5}$种可能。每种花色抽出5张有$\binom{13}{5}$种可能，排除皇家同花顺，共有
+$\binom{13}{5}-1$种可能。总共有4种花色，因此抽出同花的概率为$\frac{4(\binom{13}{5}-1)}{\binom{52}{5}}$。
+
+**(b)** Two pair (e.g., two 3's, two 7's, and an ace).
+
+**解答**：
+
+52张牌抽取5张总共有$\binom{52}{5}$种可能。抽出两对有$\binom{13}{2}\binom{4}{2}\binom{4}{2}\binom{44}{1}$。
+因此抽出两对的概率为$\frac{\binom{13}{2}\binom{4}{2}^2\cdot 44}{\binom{52}{5}}$。
+
+## Problem 35
+A random 13-card hand is dealt from a standard deck of cards. What is the probability
+that the hand contains at least 3 cards of every suit?
+
+**解答**：
+
+13张牌要求每种花色至少3张，那只有$4, 3, 3, 3$这一种方式，也就是从4种花色种选一种抽4张牌，其余花色各抽3张。
+因此概率为$\frac{\binom{4}{1}\binom{13}{4}\binom{13}{3}^3}{\binom{52}{13}}$。
+
+## Problem 36
+A group of 30 dice are thrown. What is the probability that 5 of each of the values
+1, 2, 3, 4, 5, 6 appear?
+
+**解答**：
+
+30个骰子总共有$6^{30}$种可能，1-6各出现5次总共有$\frac{30!}{(5!)^6}$种可能，因此概率为$\frac{30!}{(5!)^66^{30}}$。
+
 # Axioms of probability
 
 ## Problem 43
