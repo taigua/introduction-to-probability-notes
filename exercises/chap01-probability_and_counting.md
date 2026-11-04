@@ -810,6 +810,98 @@ appear (in any order) before the first ace.
 同样只需要关注全部J、Q、K和A，一共十六张牌。全部16张牌排列一共有$16!$种可能，恰好只有一张J、Q和K出现在第一张A之前
 意味着前三张牌必须是J、Q和K（任意排列），第四张牌必须是A，一共有$4^3\cdot3!\cdot4\cdot12!$种可能。因此，所求概率为$\frac{4^3\cdot3!\cdot4\cdot12!}{16!}=\frac{16}{455}$。
 
+## Problem 38
+Tyrion, Cersei, and ten other people are sitting at a round table, with their seating
+arrangement having been randomly assigned. What is the probability that Tyrion and
+Cersei are sitting next to each other? Find this in two ways:
+
+**(a)** using a sample space of size $12!$, where an outcome is fully detailed about the seating;
+
+**解答**：
+
+12个人全排列有$12!$种可能。先让Tyrion和Cersei坐一起，则有$12 \cdot 2$种可能，再让剩下的$10$个人
+随便坐，共有$10!$种可能。因此，Tyrion和Cersei坐一起的概率为$\frac{12 \cdot 2 \cdot 10!}{12!} = \frac{2}{11}$。
+
+
+**(b)** using a much smaller sample space, which focuses on Tyrion and Cersei.
+
+**解答**：
+
+我们让Tyrion和Cersei挑位置，一共有$(12)_2$种可能，而Tyrion和Cersei坐一起则有$12\cdot 2$种可能。
+因此Tyrion和Cersei坐一起的概率为$\frac{12 \cdot 2}{(12)_2} = \frac{2}{11}$。
+
+## Problem 39
+An organization with $2n$ people consists of $n$ married couples. A committee of size $k$ is
+selected, with all possibilities equally likely. Find the probability that there are exactly
+$j$ married couples within the committee.
+
+**解答**：
+
+从$2n$个人中选$k$个人有$\binom{2n}{k}$种可能。想要其中只有$j$对夫妇，则先从$n$对夫妇种选取$j$对，
+有$\binom{n}{j}$种可能；再从剩下的$n-j$对夫妇中，选$k - 2j$对，共有$\binom{n-j}{k-2j}$种可能，；
+再从$k-2j$对种，每对选一个人，共有$2^{k-2j}$种可能。
+因此，概率为：$\frac{\binom{n}{j}\binom{n-j}{k-2j}2^{k-2j}}{\binom{2n}{k}}$。
+
+## Problem 40
+There are $n$ balls in a jar, labeled with the numbers $1, 2, ..., n$. A total of $k$ balls are
+drawn, one by one *with replacement*, to obtain a sequence of numbers.
+
+**(a)** What is the probability that the sequence obtained is strictly increasing?
+
+**解答**：
+
+从$n$个球中有替代选$k$个球排列的方式有$n^k$种，$k$个球要严格递增，那么$k$个球必须互不相同，
+且只有一种排列，有$\binom{n}{k}$种可能。因此，概率为$\frac{\binom{n}{k}}{n^k}$。
+
+**(b)** What is the probability that the sequence obtained is increasing (but not necessarily
+strictly increasing, i.e., there can be repetitions)?
+
+**解答**：
+
+从$n$个球中有替代选$k$个球排列的方式有$n^k$种，$k$个球要递增，则意味着从$n$个球中有替代选$k$个，
+且排列方式只有一种，有$\binom{n+k-1}{k}$种。
+因此，概率为$\frac{\binom{n+k-1}{k}}{n^k}$。
+
+## Problem 41
+Each of $n$ balls is independently placed into one of $n$ boxes, with all boxes equally likely.
+What is the probability that exactly one box is empty?
+
+**解答**：
+
+$n$个球放入$n$个盒子总共有$n^n$种可能。要想只有一个空盒子，我们首先从$n$个盒子中选一个作为空盒子，总共有
+$n$种可能；剩下的$n-1$个盒子中，必有一个盒子中有$2$个球，其余盒子每个有且只有$1$个球；我们从$n-1$个盒子
+中选一个盒子放两个球，共有$n-1$种可能，在从$n$个球中选两个放入其中，总共有$\binom{n}{2}$种可能；然后将
+剩余$n-2$个球放入剩下的$n-2$个盒子中，每个盒子有且只有一个球，总共有$(n-2)!$种可能。
+
+因此，恰好只有一个盒子空的概率为：
+$\frac{n(n-1)\binom{n}{2}(n-2)!}{n^n} = \frac{\binom{n}{2}n!}{n^n} = \frac{n(n-1)n!}{2n^n}$。
+
+## Problem 42
+A *norepeatword* is a sequence of at least one (and possibly all) of the usual 26 letters
+a, b, c, ..., z, with repetitions not allowed. For example, "course" is a norepeatword, but
+"statistics" is not. Order matters, e.g., "course" is not the same as "source".
+
+A norepeatword is chosen randomly, with all norepeatwords equally likely. Show that
+the probability that it uses all 26 letters is very close to $1 / \mathscr{e}$.
+
+**解答**：
+
+包含1个字母的非重复单词有$\binom{26}{1}1!$种，包含2个字母的非重复单词有$\binom{26}{2}2!$种，
+以此类推，包含$i$个字母的非重复单词有$\binom{26}{i}i! = \frac{26!}{(26-i)!}$种，
+
+因此从全部非重复单词中选一个包含26个字母的非重复单词的概率为：
+
+$$
+\begin{align*}
+\frac{26!}{\sum\limits_{i=1}^{26} \frac{26!}{(26-i)!}}
+&= \frac{26!}{26!\sum\limits_{i=1}^{26}\frac{1}{(26-i)!}} \\
+&= \frac{1}{\sum\limits_{i=1}^{26}\frac{1}{(26-i)!}} \\
+&= \frac{1}{1 + \sum\limits_{k=1}^{25}\frac{1}{k!}}
+\end{align*}
+$$
+
+根据泰勒级数$\ \mathscr{e}^x=1 + x + x^2/2! + ...$，令$x=1$，则最终概率约等于$1/\mathscr{e}$。
+
 # Axioms of probability
 
 ## Problem 43
