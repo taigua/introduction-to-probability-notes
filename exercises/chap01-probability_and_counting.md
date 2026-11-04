@@ -1115,3 +1115,21 @@ with Caesar's last breath, and give a simple approximation in terms of $\mathit{
 概率为$(1-\frac{1}{10^{22}})^{10^{22}}$，令$x=-1$，有$(1-\frac{1}{10^{22}})^{10^{22}} \approx \mathit{e}^{-1}$。
 
 所以：$P(A) = 1-P(A^C) \approx 1 - \mathit{e}^{-1} \approx 0.6321$。
+
+## Problem 58
+A widget inspector inspects 12 widgets and finds that exactly 3 are defective. Unfortunately,
+the widgets then get all mixed up and the inspector has to find the 3 defective
+widgets again by testing widgets one by one.
+
+**(a)** Find the probability that the inspector will now have to test at least 9 widgets.
+
+**解答**：
+
+设事件$A$为至少需要测试$9$个组件，则$A$的逆事件为最多需要测试$8$个组件，即$3$个损坏组件出现在前$8$个组件中。
+我们只考虑前$8$个组件，一共有$(12)_8$种可能，而$3$个损坏组件出现在前$8$个组件中，共有$\binom{9}{5}8!$种可能。
+
+因此$P(A) = 1-P(A^C) = 1 - \frac{\binom{9}{5}8!}{(12)_8}$。
+
+**(b)** Find the probability that the inspector will now have to test at least 10 widgets.
+
+类似**(a)**，概率为：$1 - \frac{\binom{9}{6}9!}{(12)_9}$。
