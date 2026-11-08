@@ -1002,6 +1002,68 @@ $$
 P(B_k) = P(C_k - C_{k+1}) = P(C_k) - P(C_{k+1})
 $$
 
+## Problem 47
+Events $A$ and $B$ are _independent_ if $P(A \cap B)=P(A)P(B)$ (independence is explored
+in detail in the next chapter).
+
+**(a)** Give an example of independent events $A$ and $B$ in a finite sample space $S$
+(with neither equal to $\emptyset$ or $S$), and illustrate it with a Pebble World diagram.
+
+**解答**：
+
+假设掷一枚公平的硬币两次。样本空间$S$为：$\{HH, HT, TH, TT\}$。设事件$A$为第一次掷硬币正面朝上，
+事件$B$为第二次掷硬币正面朝上。则$A=\{HH, HT\}$，$B=\{HH, TH\}$，$A \cap B = \{HH\}$，因此$P(A)=1/2$，$P(B)=1/2$，$P(A \cap B)=1/4$。
+
+显然$P(A)P(B)=P(A \cap B)$，因此事件$A$和事件$B$相互独立。
+
+**卵石图**：
+
+![](../assets/ch01-p47-a.png)
+
+**(b)** Consider the experiment of picking a random point in the rectangle
+
+$$
+R = \{(x,y): 0 < x < 1, 0 < y < 1\},
+$$
+
+where the probability of the point being in any particular region contained within $R$ is
+the area of that region. Let $A_1$ and $B_1$ be rectangles contained within $R$, with areas not
+equal to $0$ or $1$. Let $A$ be the event that the random point is in $A_1$, and $B$ be the event
+that the random point is in $B_1$. Give a geometric description of when it is true that $A$
+and $B$ are independent. Also, give an example where they are independent and another
+example where they are not independent.
+
+**解答**：
+
+我们假设$A_1$的面积为$R_A$，$B_1$的面积为$R_B$。则$P(A)=R_A$，$P(B)=R_B$。如果$A$和$B$相互独立，则
+$P(A \cap B) = P(A)P(B)$，而$P(A \cap B)$等于$A_1$和$B_1$相交的面积。也就是说，$A$和$B$相互独立，
+则$A_1$和$B_1$相交的面积等于$A_1$的面积与$B_1$面积的乘积。
+
+$A$和$B$相互独立的例子：$A_1$占据$1/2$，$B_1$占据$1/2$，$A_1$和$B_1$相交的区域占据$1/4$。
+
+$A$和$B$不独立的例子：$A_1$和$B_1$相重合。
+
+**(c)** Show that if A and B are independent, then
+
+$$
+P(A \cup B) = P(A) + P(B) - P(A)P(B) = 1 - P(A^C)P(B^C)
+$$
+
+**解答**：
+
+$$
+\begin{align*}
+P(A \cup B)&=P(A)+P(B)-P(A \cap B)\\
+&= P(A) + P(B) - P(A)P(B) \\
+&= P(A)(1- P(B)) + P(B) \\
+&= P(A)P(B^C) + P(B) \\
+&= (1-P(A^C))P(B^C) + (1-P(B^C)) \\
+&= P(B^C) - P(A^C)P(B^C) + 1 - P(B^C) \\
+&= 1 - P(A^C)P(B^C)
+\end{align*}
+$$
+
+
 # Inclusion-exclusion
 
 ## Problem 49
