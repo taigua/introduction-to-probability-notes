@@ -1063,6 +1063,86 @@ P(A \cup B)&=P(A)+P(B)-P(A \cap B)\\
 \end{align*}
 $$
 
+## Problem 48
+Arby has a belief system assigning a number $P_{Arby}(A)$ between $0$ and $1$ to every event
+$A$ (for some sample space). This represents Arby's degree of belief about how likely $A$
+is to occur. For any event $A$, Arby is willing to pay a price of $1000 \cdot P_{Arby}(A)$
+to buy a certificate such as the one shown below:
+
+> **Certificate**: The owner of this certificate can redeem it for $\$1000$ if $A$ occurs. No value if $A$ does not occur, except as required by federal, state, or local law. No expiration date.
+
+Likewise, Arby is willing to sell such a certificate at the same price. Indeed, Arby is
+willing to buy or sell any number of certificates at this price, as Arby considers it the
+"fair" price.
+
+Arby stubbornly refuses to accept the axioms of probability. In particular, suppose that
+there are two _disjoint_ events $A$ and $B$ with
+
+$$
+P_{Arby}(A \cup B) \neq P_{Arby}(A) + P_{Arby}(B)
+$$
+
+Show how to make Arby go bankrupt, by giving a list of transactions Arby is willing
+to make that will _guarantee_ that Arby will lose money (you can assume it will be
+known whether $A$ occurred and whether $B$ occurred the day after any certificates are
+bought/sold).
+
+**解答**：
+
+设事件$C=A \cup B$。由于$A$和$B$互斥，$C$发生当且仅当$A$或$B$恰有一个发生；二者都不发生时$C$不发生。
+令$P_A = P_{Arby}(A)$，$P_B=P_{Arby}(B)$，$P_C=P_{Arby}(C)$。
+
+如果$P_C \neq P_A + P_B$，则
+
+**当$P_C > P_A + P_B$时，我们进行如下交易**：
+  
+  - 向Arby买入一份$A$证书，支出$1000P_A$；
+  - 向Arby买入一份$B$证书，支出$1000P_B$；
+  - 向Arby卖出一份$C$证书，收入$1000P_C$。
+
+初始净现金流为：
+$$
+1000P_C - 1000P_A - 1000P_B = 1000(P_C - P_A - P_B)
+$$
+即一开始我们无风险地净赚了正数。
+
+到期结算时：
+
+- 如果$A$发生：$A$证书使我们赚$1000$，$C$证书使我们损失$1000$，净值为$0$；
+- 如果$B$发生：$B$证书使我们赚$1000$，$C$证书使我们损失$1000$，净值为$0$；
+- 如果$A$和$B$都不发生，则$C$也不会发生，所有证书都不需要兑现，净值为$0$。
+
+因此，如论如何我们都净赚$1000(P_C - P_A - P_B)$，这也是Arby的亏损。
+
+**当$P_C < P_A + P_B$时，我们进行如下交易**：
+  
+  - 向Arby卖出一份$A$证书，收入$1000P_A$；
+  - 向Arby卖出一份$B$证书，收入$1000P_B$；
+  - 向Arby买入一份$C$证书，支出$1000P_C$。
+
+初始净现金流为：
+$$
+1000P_A + 1000P_B - 1000P_C = 1000(P_A + P_B - P_C)
+$$
+即一开始我们无风险地净赚了正数。
+
+到期结算时：
+
+- 如果$A$发生：$A$证书使我们损失$1000$，$C$证书使我们赚$1000$，净值为$0$；
+- 如果$B$发生：$B$证书使我们损失$1000$，$C$证书使我们赚$1000$，净值为$0$；
+- 如果$A$和$B$都不发生，则$C$也不会发生，所有证书都不需要兑现，净值为$0$。
+
+因此，如论如何我们都净赚$1000(P_A + P_B - P_C)$，这也是Arby的亏损。
+
+综上，只要$P_{Arby}(A \cup B) \neq P_{Arby}(A) + P_{Arby}(B)$，我们就可以按上述方式构造一个无风险套利。
+Arby愿意以这些价格买卖任意数量证书，因此我们还可以把上述交易重复$N$份，使Arby的保证亏损放大为
+
+$$
+1000N \cdot |P_{Arby}(A \cup B) - P_{Arby}(A) - P_{Arby}(B)| > 0,
+$$
+
+只要$N$足够大，Arby一定会破产。
+
 
 # Inclusion-exclusion
 
@@ -1102,6 +1182,29 @@ P(\bigcup\limits_{i=1}^{4} A_i) &= \sum\limits_{i}P(A_i) -
 &\approx 0.0511
 \end{align*}
 $$
+
+## Problem 51
+For a group of 7 people, find the probability that all 4 seasons (winter, spring,
+summer, fall) occur at least once each among their birthdays, assuming that all seasons
+are equally likely.
+
+**解答**：
+
+设事件$A$、$B$、$C$和$D$分别表示冬天、春天、夏天和秋天至少出现一次的概率。我们要求的$P(A \cap B \cap C \cap D)$。
+而$P(A \cap B \cap C \cap D) = 1 - P((A \cap B \cap C \cap D)^C) = 1 - P(A^C \cup B^C \cup C^C \cup D^C)$。
+根据容斥原理和对称性，我们有：
+
+$$
+\begin{align*}
+P(A^C \cup B^C \cup C^C \cup D^C) &= \binom{4}{1}P(A^C) - \binom{4}{2}P(A^C \cap B^C) + \binom{4}{3}P(A^C \cap B^C \cap C^C) - \binom{4}{4}P(A^C \cap B^C \cap C^C \cap D^C) \\
+&= 4P(A^C) - 6P(A^C \cap B^C) + 4P(A^C \cap B^C \cap C^C) + P(A^C \cap B^C \cap C^C \cap D^C) \\
+&= 4\frac{3^7}{4^7} - 6\frac{2^7}{4^7} + 4\frac{1^7}{4^7} - 0 \\
+&\approx 0.4873
+\end{align*}
+$$
+
+所以，$P(A \cap B \cap C \cap D) \approx = 1 - 0.4873 = 0.5127$。
+
 
 # Mixed practice
 
