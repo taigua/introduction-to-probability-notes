@@ -1175,10 +1175,10 @@ $$
 P(\bigcup\limits_{i=1}^{4} A_i) &= \sum\limits_{i}P(A_i) - 
 \sum\limits_{i < j}P(A_i \cap A_j) +
 \sum\limits_{i < j < k}P(A_i \cap A_j \cap A_k) -
-\sum P(A_1 \cap A_2 \cap A_3 \cap A_4)\\
+\sum P(A_1 \cap A_2 \cap A_3 \cap A_4) \\
 &= 4 \times \frac{\binom{39}{13}}{\binom{52}{13}} -
 \binom{4}{2} \times \frac{\binom{26}{13}}{\binom{52}{13}} +
-\binom{4}{3} \times \frac{\binom{13}{13}}{\binom{52}{13}} - 0\\
+\binom{4}{3} \times \frac{\binom{13}{13}}{\binom{52}{13}} - 0 \\
 &\approx 0.0511
 \end{align*}
 $$
@@ -1205,6 +1205,33 @@ $$
 
 所以，$P(A \cap B \cap C \cap D) \approx = 1 - 0.4873 = 0.5127$。
 
+## Problem 52
+A certain class has 20 students, and meets on Mondays and Wednesdays in a classroom
+with exactly 20 seats. In a certain week, everyone in the class attends both days. On
+both days, the students choose their seats completely randomly (with one student per
+seat). Find the probability that no one sits in the same seat on both days of that week.
+
+**解答**：
+
+设事件$S_i$表示学生$i$两次坐在同一个座位上。则问题就是要求$1 - P(\bigcup\limits_{i=1}^{20}S_i)$。
+
+根据容斥原理和对称性，我们有：
+
+$$
+\begin{align*}
+P(\bigcup\limits_{i=1}^{20}S_i) &= \sum\limits_{i}P(S_i) - 
+  \sum\limits_{i<j}P(S_i \cap S_j) + 
+  \sum\limits_{i<j<k} P(S_i \cap S_j \cap S_k) - ... + 
+  (-1)^{21}P(S_1 \cap ... \cap S_{20} ) \\
+&= 20P(S_1) - \binom{20}{2}P(S_1 \cap S_2) + \binom{20}{3}P(S_1 \cap S_2 \cap S_3) - ... -P(S_1 \cap ... \cap S_{20}) \\
+&= 20*\frac{1}{20} - \binom{20}{2}\frac{1}{20*19} + \binom{20}{3}\frac{1}{20*19*18} - ... + \binom{20}{19}\frac{1}{20*19*...*2} - \frac{1}{20*19*...*2*1} \\
+&= 1 - \frac{1}{2!} + \frac{1}{3!} - ... + \frac{1}{19!} - \frac{1}{20!} \\
+&= \sum\limits_{k=1}^{20}(-1)^{k+1}\frac{1}{k!} \\
+&\approx 1 - \mathscr{e}^{-1}
+\end{align*}
+$$
+
+因此，没有一个人坐在同一个座位的概率约为$\mathscr{e}^{-1}$。
 
 # Mixed practice
 
