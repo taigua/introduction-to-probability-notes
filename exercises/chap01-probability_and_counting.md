@@ -1233,6 +1233,116 @@ $$
 
 因此，没有一个人坐在同一个座位的概率约为$\mathscr{e}^{-1}$。
 
+## Problem 53
+Fred needs to choose a password for a certain website. Assume that he will choose an
+8-character password, and that the legal characters are the lowercase letters a, b, c, ...,
+z, the uppercase letters A, B, C, ..., Z, and the numbers 0, 1, ..., 9.
+
+**(a)** How many possibilities are there if he is required to have at least one 
+lowercase letter in his password?
+
+**解答**：
+
+所有密码的可能性为$62^8$，不包含小写字母的密码可能性为$36^8$，因此至少包含一个小写字母的
+可能性为：$62^8 - 36^8$。
+
+**(b)** How many possibilities are there if he is required to have at least one lowercase
+letter and at least one uppercase letter in his password?
+
+**解答**：
+
+所有密码的可能性为$62^8$，不包含小写字母的密码可能性都为$36^8$，不包含大写字母的密码可能性都为$36^8$，
+不包含大小写字母的密码可能性都为$10^8$，因此至少包含一个大写字母的和一个小写字母的
+可能性为：$62^8 - 2*36^8 + 10^8$。
+
+**(c)** How many possibilities are there if he is required to have at least one lowercase
+letter, at least one uppercase letter, and at least one number in his password?
+
+所有密码的可能性为$62^8$，不包含小写字母的密码可能性都为$36^8$，不包含大写字母的密码可能性都为$36^8$，
+不包含数字的密码可能性为$52^8$，不包含小写字母和数字的可能性为$26^8$，不包含小写字母和数字的可能性为$26^8$
+不包含大小写字母的密码可能性都为$10^8$，三者都不包含的可能性为$0$，因此但这都包含的
+可能性为：$62^8 - 2*36^8 - 52^8 + 2*26^8 + 10^8$。
+
+## Problem 54
+Alice attends a small college in which each class meets only once a week. She is
+deciding between 30 non-overlapping classes. There are 6 classes to choose from for each
+day of the week, Monday through Friday. Trusting in the benevolence of randomness,
+Alice decides to register for 7 randomly selected classes out of the 30, with all choices
+equally likely. What is the probability that she will have classes every day, Monday
+through Friday? (This problem can be done either directly using the naive definition of
+probability, or using inclusion-exclusion.)
+
+**解答**：
+
+**方法一**：
+
+从$30$门课中选$7$个总共有$\binom{30}{7}$中可能；7门课放在周一到周五，要求每天都
+有课，有两种方法：1) 其中一天有3门课，其他四天每天1门，总共有$\binom{5}{1}\binom{6}{3}\binom{6}{1}^4$种可能；
+2) 其中两天每天2门课，其余三天每天1门，总共有$\binom{5}{2}\binom{6}{2}^2\binom{6}{1}^3$种可能。
+
+因此，周一到周五每天都有课的概率为：
+
+$$
+\begin{align*}
+P &= \frac{\binom{5}{1}\binom{6}{3}\binom{6}{1}^4 + \binom{5}{2}\binom{6}{2}^2\binom{6}{1}^3}{\binom{30}{7}} \\
+&= \frac{5*20*6^4 + 10*15^2*6^3}{2035800}
+&\approx 0.3024
+\end{align*}
+$$
+
+**方法二**：
+
+令事件$A_i$表示第$i$天没有课（$i\in [1, 5]$）。根据容斥原理和对称性，我们有：
+
+$$
+\begin{align*}
+P(\bigcup\limits_{i=1}^5A_i)
+&= 5*\frac{\binom{24}{7}}{\binom{30}{7}} - 
+   10*\frac{\binom{18}{7}}{\binom{30}{7}} +
+   10*\frac{\binom{12}{7}}{\binom{30}{7}} - 0 + 0 \\   
+&\approx 0.6976
+\end{align*}
+$$
+
+因此周一到周五每天都有课的概率为$P \approx 1 - 0.6976 = 0.3024$。
+
+## Problem 55
+A club consists of 10 seniors, 12 juniors, and 15 sophomores. An 
+organizing committee of size 5 is chosen randomly (with all subsets of
+size 5 equally likely).
+
+**(a)** Find the probability that there are exactly 3 sophomores in the 
+committee.
+
+**解答**：
+
+组成委员会一共有$\binom{37}{5}$种可能，恰好有3名二年级学生共有$\binom{15}{3}\binom{22}{2}$种可能，因此概率为$\frac{\binom{15}{3}\binom{22}{2}}{\binom{37}{5}} \approx 0.2411$。
+
+**(b)** Find the probability that the committee has at least one 
+representative from each of the senior, junior, and sophomore classes.
+
+设事件$A$表示委员会没有四年级学生，事件$B$表示委员会没有三年级学生，事件$C$表示委员会没有二年级学生，根据容斥原理有：
+
+$$
+\begin{align*}
+P(A \cup B \cup C)
+&= P(A)+P(B)+P(C) - 
+   P(A \cap B) - 
+   P(A \cap C) - 
+   P(B \cap C) + 
+   P(A \cap B \cap C) \\
+&= \frac{\binom{27}{5}}{\binom{37}{5}} +
+   \frac{\binom{25}{5}}{\binom{37}{5}} +
+   \frac{\binom{22}{5}}{\binom{37}{5}} -
+   \frac{\binom{15}{5}}{\binom{37}{5}} -
+   \frac{\binom{12}{5}}{\binom{37}{5}} -
+   \frac{\binom{10}{5}}{\binom{37}{5}} - 0 \\
+&\approx 0.3582
+\end{align*}
+$$
+
+因此，委员会成员各年级至少有一个的概率为$P \approx 1 - 0.3582 = 0.6418$。
+
 # Mixed practice
 
 ## Problem 56
