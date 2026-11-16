@@ -1264,13 +1264,14 @@ letter, at least one uppercase letter, and at least one number in his password?
 可能性为：$62^8 - 2*36^8 - 52^8 + 2*26^8 + 10^8$。
 
 ## Problem 54
-Alice attends a small college in which each class meets only once a week. She is
-deciding between 30 non-overlapping classes. There are 6 classes to choose from for each
-day of the week, Monday through Friday. Trusting in the benevolence of randomness,
-Alice decides to register for 7 randomly selected classes out of the 30, with all choices
-equally likely. What is the probability that she will have classes every day, Monday
-through Friday? (This problem can be done either directly using the naive definition of
-probability, or using inclusion-exclusion.)
+Alice attends a small college in which each class meets only once a week.
+She is deciding between 30 non-overlapping classes. There are 6 classes 
+to choose from for each day of the week, Monday through Friday. Trusting 
+in the benevolence of randomness, Alice decides to register for 7 
+randomly selected classes out of the 30, with all choices equally likely. 
+What is the probability that she will have classes every day, Monday
+through Friday? (This problem can be done either directly using the naive 
+definition of probability, or using inclusion-exclusion.)
 
 **解答**：
 
@@ -1435,4 +1436,117 @@ widgets again by testing widgets one by one.
 
 **(b)** Find the probability that the inspector will now have to test at least 10 widgets.
 
-类似**(a)**，概率为：$1 - \frac{\binom{9}{6}9!}{(12)_9}$。
+类似(a)，概率为：$1 - \frac{\binom{9}{6}9!}{(12)_9}$。
+
+## Problem 59
+There are 15 chocolate bars and 10 children. In how many ways can the 
+chocolate bars be distributed to the children, in each of the following 
+scenarios?
+
+**(a)** The chocolate bars are fungible (interchangeable).
+
+**解答**：
+
+可以看作从10个孩子中有替换地抽15个人，根据Bose-Einstein有：
+$\binom{15 + 10 - 1}{9}=\binom{24}{9}=1307504$。
+
+**(b)** The chocolate bars are fungible, and each child must receive at
+least one.
+
+_Hint_: First give each child a chocolate bar, and then decide what to do 
+with the rest.
+
+**解答**：
+
+首先给每个孩子一块巧克力，只有一种方式（一人一个），然后把剩下的5块巧克力分给10个孩子，相当于从10个孩子种中有替换地抽5人，根据Bose-Einstein有：$\binom{5 + 10 - 1}{9}=\binom{14}{9}=2002$。
+
+**(c)** The chocolate bars are not fungible (it matters which particular 
+bar goes where).
+
+**解答**：
+
+巧克力棒不可替代，且关注每个巧克力棒发给谁，相当于从10个孩子里有替换且有序地抽15个人，总共有$10^15$种可能。
+
+**(d)** The chocolate bars are not fungible, and each child must receive 
+at least one.
+
+_Hint_: The strategy suggested in (b) does not apply. Instead, consider 
+_randomly_ giving the chocolate bars to the children, and apply 
+inclusion-exclusion.
+
+**解答**：
+
+至少一个孩子没有巧克力的分配方法有$(10-1)^{15}$种可能，至少两个孩子没有巧克力的分配方法有$(10-2)^{15}$种可能，至少$i$个孩子没有巧克力的分配方法有$(10-i)^{15}$种可能。根据容斥原理，15个孩子种某个（些）孩子没有巧克力的分配方式有$\sum\limits_{i=1}^9(-1)^{i+1}\binom{10}{i}(10-i)^{15}$，因此每个孩子至少一块巧克力的分配方法总共有$10^{15}-\sum\limits_{i=1}^9(-1)^{i+1}\binom{10}{i}(10-i)^{15}$种可能。
+
+## Problem 60
+Given $n \ge 2$ numbers $(a_1, a_2, ..., a_n)$ with no repetitions, a 
+_bootstrap sample_ is a sequence $(x_1, x_2, ..., x_n)$ formed from the 
+$a_j$'s by sampling with replacement with equal probabilities. Bootstrap 
+samples arise in a widely used statistical method known as the _bootstrap_. 
+For example, if $n = 2$ and $(a_1, a_2) = (3, 1)$, then the possible 
+bootstrap samples are $(3, 3), (3, 1), (1, 3)$ and $(1, 1)$.
+
+**(a)** How many possible bootstrap samples are there for $(a_1,...,a_n)$?
+
+**解答**：
+
+有替代有序采样，总共有$n^n$种可能。
+
+**(b)** How many possible bootstrap samples are there for $(a_1,...,a_n)$,
+if order does not matter (in the sense that it only matters how many 
+times each $a_j$ was chosen, not the order in which they were chosen)?
+
+**解答**：
+
+有替代无需采样，根据Bose-Einstein有$\binom{2n-1}{n-1}$种可能。
+
+**(c)** One random bootstrap sample is chosen (by sampling from $a_1,..., a_n$
+with replacement, as described above). Show that not all unordered   
+bootstrap samples (in the sense of (b)) are equally likely. Find an 
+unordered bootstrap sample $b_1$ that is as likely as possible, and an unordered bootstrap sample $b_2$ that is as unlikely as possible. Let
+$p_1$ be the probability of getting $b_1$ and $p_2$ be the probability of 
+getting $b_2$ (so $p_i$ is the probability of getting the _specific_ 
+unordered bootstrap sample $b_i$). What is $p_1/p_2$? What is
+the ratio of the probability of getting an unordered bootstrap sample 
+whose probability is $p_1$ to the probability of getting an unordered 
+sample whose probability is $p_2$?
+
+**解答**：
+
+设无序*bootstrap sample*用计数向量
+
+$$
+(k_1,k_2,...,k_n), k_i \ge 0, \sum\limits_{i=1}^nk_i=n
+$$
+
+表示，其中$k_i$表示$a_i$出现的次数。
+
+对于任意计数向量，对应的有序样本数为$\frac{n!}{k_1!k_2!...k_n!}$。
+因此对应的无需样本概率为：$P((k_1,k_2,...,k_n))=\frac{n!}{k_1!k_2!...k_n!}\frac{1}{n^n}$。
+
+而$n!$和$n^n$是固定的，因此概率于$k_1!k_2!...k_n!$成反比。
+
+概率最大的样本$b_1$就是$k_1!k_2!...k_n!$取值最小的样本，即每个元素出现一次，
+$b_1=(a_1,a_2,...,a_2)$，$p_1=P(b_1)=\frac{n!}{n^n}$。
+
+概率最小的岩本$b_2$就是$k_1!k_2!...k_n!$取值最大的样本，即某个元素出现$n$次，
+$b_2=(a_1,a_1,...,a_1)$，$p_2=P(b_2)=\frac{1}{n^n}$。
+
+$p_1/p_2=n!$。
+
+## Problem 61
+There are 100 passengers lined up to board an airplane with 100 seats 
+(with each seat assigned to one of the passengers). The first passenger 
+in line crazily decides to sit in a randomly chosen seat (with all seats 
+equally likely). Each subsequent passenger takes their assigned seat if 
+available, and otherwise sits in a random available seat. What is
+the probability that the last passenger in line gets to sit in their 
+assigned seat? (This is a common interview problem, and a beautiful 
+example of the power of symmetry.)
+
+_Hint_: Call the seat assigned to the $j$th passenger in line seat $j$
+(regardless of whether the airline calls it seat 23A or whatever). What 
+are the possibilities for which seats are available to the last passenger 
+in line, and what is the probability of each of these possibilities?
+
+**解答**：
