@@ -1550,3 +1550,205 @@ are the possibilities for which seats are available to the last passenger
 in line, and what is the probability of each of these possibilities?
 
 **解答**：
+
+1. 如果第1个乘客选择了座位1，那么最后一个乘客必然选择座位100。
+2. 如果第1个乘客选择了座位100，那么最后一个乘客必然选择座位1。
+3. 如果第1个乘客选择了除去座位1和座位100之外的座位i：
+    - 如果第i个乘客选择了座位1，那么最后一个乘客必然选择座位100。
+    - 如果第i个乘客选择了座位100，那么最后一个乘客必然选择座位1。
+    - 如果第i个乘客选择了除去座位1和座位100之外的座位j，则又回到了3.情况。
+
+综上，不管前面的乘客如何选择座位，最后一个乘客只能选择座位1或座位100，且两种
+情况是等可能的，两者的概率都是$1/2$。
+
+## Problem 62
+In the birthday problem, we assumed that all 365 days of the year are 
+equally likely (and excluded February 29). In reality, some days are 
+slightly more likely as birthdays than others. For example, scientists 
+have long struggled to understand why more babies are born 9 months after 
+a holiday. Let $\bold{p}=(p_1,p_2,...,p_{365})$ be the vector of birthday
+probabilities, with $p_j$ the probability of being born on the $j$-th day of the year (February 29 is still excluded, with no offense intended to 
+Leap Dayers).
+
+The $k$-th _elementary symmetric polynomial_ in the variables $x_1,...,x_n$
+is defined by
+
+$$
+e_k(x_1,...,x_n) = \sum\limits_{1\le j_1 <j_2<...<j_k\le n} x_{j_1}...x_{j_k}
+$$
+
+This just says to add up all of the $\binom{n}{k}$ terms we can get by 
+choosing and multiplying $k$ of the variables. For example, 
+$e_1(x_1,x_2,x_3)=x_1+x_2+x_3, e_2(x_1,x_2,x_3)=x_1x_2+x_1x_3+x_2x_3$,
+and $e_3(x_1,x_2,x_3)=x_1x_2x_3$.
+
+Now let $k \ge 2$ be the number of people.
+
+**(a)** Find a simple expression for the probability that there is at 
+least one birthday match, in terms of $\bold{p}$ and an elementary 
+symmetric polynomial.
+
+**解答**：
+
+我们求逆事件，即所有$k$个人的生日都不相同的概率。也就是从365天中选取$k$天进行排列得到的概率，即$k!e_k(\bold{p})$。因此至少一个日期匹配的概率为$1-k!e_k(\bold{p})$。
+
+
+**(b)** Explain intuitively why it makes sense that $P$ (at least one 
+birthday match) is minimized when $p_j=\frac{1}{365}$ for all $j$, by 
+considering simple and extreme cases.
+
+**解答**：
+
+直观上，生日分布越“分散”，两个人或$k$个人碰到同一个生日的可能性越小；而均匀分布是最分散的分布。
+
+先看两个人的情况：
+
+$$
+P(两个人同一天生日)=\sum\limits_{j=1}^{365}p_j^2
+$$
+
+若所有概率集中到一天，例如$p_1=1$，则两人必同生日，概率为$1$。若只有两天可能，概率为$p, p-1$，则
+
+$$
+P = p^2 + (1-p)^2 = 1-2p(1-p),
+$$
+
+当$p=1/2$时最小，当$p=0$或$1$时最大。这说明把概率“拉平”会降低重合概率。
+
+对$k$个人也一样：如果生日集中在少数几天，重合机会很大；均匀分布在365天上时，所有不同生日组合最多、最分散，因此“至少一对相同”的概率最小。所以均匀分布$p_j=\frac{1}{365}$使匹配概率最小是合理的。
+
+**(c)** The famous _arithmetic mean-geometric mean inequality_ says that 
+for $x,y \ge 0$,
+
+$$
+\frac{x+y}{2} \ge \sqrt{xy}.
+$$
+
+This inequality follows from adding $4xy$ to both sides of 
+$x^2-2xy+y^2=(x-y)^2 \ge 0$. Define $\bold{r} = (r_1,...,r_{365})$ by
+$r_1=r_2=(p_1+p_2)/2, r_j=p_j$ for $3 \le j \le 365$. Using the
+arithmetic mean-geometric mean bound and the fact, which you should 
+verify, that
+
+$$
+e_k(x_1,...,x_n)=x_1x_2e_{k-2}(x3,...,x_n)+(x_1+x_2)e_{k-1}(x_3,...,x_n)+
+e_k(x_3,...,x_n),
+$$
+
+show that
+
+$$
+P(\text{at least one birthday match}|\bold{p}) \ge
+P(\text{at least one birthday match}|\bold{r}),
+$$
+
+with strict inequality if $\bold{p} \ne \bold{r}$ where the "given $\bold
+{r}$" notation means that the birthday probabilities are given by 
+$\bold{r}$. Using this, show that the value of $\bold{p}$ that minimizes 
+the probability of at least one birthday match is given by 
+$p_j=\frac{1}{365}$ for all $j$.
+
+**解答**：
+
+因为$P(至少一对相同|\bold{p})=1-k!e_k(\bold{p})$，所以要证明$P(\bold{p})\ge P(\bold{r})$，等价于证明$e_k(\bold{p}) \le e_k(\bold{r})$。
+
+设$a=\frac{p_1 + p_2}{2}$，则
+
+$$
+r_1 = r_2 = a, r_j=p_j \text{ } (3\le j \le 365).
+$$
+
+记$S = (p_3,...,p_{365})$。
+
+由初等对称多项式的分解公式，
+
+$$
+e_k(p_1,p_2,S)=p_1p_2e_{k-2}(S) + (p_1+p_2)e_{k-1}(S)+e_k(S).
+$$
+
+而对$\bold{r}$，有
+
+$$
+e_k(a,a,S) = a^2e_{k-2}(S)+2ae_{k-1}(S)+e_k(S).
+$$
+
+由于$2a = p_1 + p_2$，所以
+
+$$
+e_k(\bold{r})=a^2e_{k-2}(S)+(p_1+p_2)e_{k-1}(S)+e_k(S).
+$$
+
+由算术平均-几何平均不等式，
+
+$$
+a^2=(\frac{p_1+p_2}{2})^2 \ge p_1p_2.
+$$
+
+因此
+
+$$
+e_k(\bold{r})-e_k(\bold{p})=(a^2-p_1p_2)e_{k-2}(S) \ge 0.
+$$
+
+于是$e_k(\bold{p}) \le e_k(\bold{r})$。
+
+从而$P(\bold{p})=1-k!e_k(\bold{p})\ge 1 - k!e_k(\bold{r}) = P(\bold{r})$.
+
+即
+
+$$
+P(至少一对生日相同|\bold{p}) \ge P(至少一对生日相同|\bold{r}).
+$$
+
+如果$p_1\ne p_2$，则$a^2 \ge p_1p_2$，在相关项为正的通常情形下不等式严格成立，
+即$P(\bold{p}) > P(\bold{r})$。
+
+现在，对任意$\bold{p}$，只要存在两个概率不相等，例如$p_i \ne p_j$，就把它们替换
+成它们的平均值。上面的论证说明：这样做不会增大$e_k$，因此不会增大匹配概率$P$。
+重复这一“平均化”操作，概率向量会越来越平均，最终所有分量都相等。由于总和为$1$，
+极限只能是
+
+$$
+p_1=p_2=...=p_{365}=\frac{1}{365}.
+$$
+
+每一步匹配概率都不增，因此对任意$\bold{p}$都有
+
+$$
+P(\bold{p}) \ge P(\frac{1}{365},...,\frac{1}{365}).
+$$
+
+所以最小化匹配概率的分布为
+
+$$
+p_j = \frac{1}{365} \ (j \in [1, 365]).
+$$
+
+此时
+
+$$
+e_k\left(\frac{1}{365}, ..., \frac{1}{365}\right) = 
+\binom{365}{k}\left(\frac{1}{365}\right)^k,
+$$
+
+所以生日问题的概率为
+
+$$
+P_{min} = 1-k!\binom{365}{k}\left(\frac{1}{365}\right)^k =
+1 - \frac{365\cdot 364 ... (365-k+1)}{365^k}.
+$$
+
+综上：
+
+$$
+P(至少一对生日相同|\bold{p}) = 1 - k!e_k(\bold{p}).
+$$
+
+均匀分布使该概率最小；严格证明通过将任意两个不相等的$p_i, p_j$替换为它们的平均
+值，利用
+
+$$
+\left(\frac{p_i+p_j}{2}\right)^2 \ge p_jp_j
+$$
+
+得到$e_k$不减，匹配概率不增，反复操作最终得到对于所有$j$，$p_j = \frac{1}{365}$。
