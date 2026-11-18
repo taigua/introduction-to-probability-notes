@@ -1,10 +1,6 @@
 # Counting
 
 ## Problem 1
-How many ways are there to permute the letters in the word MISSISSIPPI?
-
-**解答**：
-
 MISSISSIPPI含有1个M，4个I，4个S和2个P，一共11个字符。相同字母彼此是无法区分的，因此，这些字母的排列方式有：
 
 $$
@@ -12,131 +8,63 @@ $$
 $$
 
 ## Problem 2
-
-**(a)** How many 7-digit phone numbers are possible, assuming that the first digit can't be a 0 or a 1?
-
-**解答**：
+**(a)**
 
 第1位有8中可能性（2-9），其他6位有10中可能性，所以有：$8 \times 10^6 = 8\_000\_000$。
 
-**(b)** Re-solve (a), except now assume also that the phone number is not allowed to start
-with 911 (since this is reserved for emergency use, and it would not be desirable for the
-system to wait to see whether more digits were going to be dialed after someone has
-dialed 911).
-
-**解答**：
+**(b)** 
 
 以911开头的号码一共有$10^4$，因此一共有：$8 \times 10^6 - 10^4$
 
 ## Problem 3
-Fred is planning to go out to dinner each night of a certain week, Monday through
-Friday, with each dinner being at one of his ten favorite restaurants.
-
-**(a)** How many possibilities are there for Fred's schedule of dinners for that Monday
-through Friday, if Fred is not willing to eat at the same restaurant more than once?
-
-**解答**：
+**(a)** 
 
 周一可以选10家餐厅，周二可以选9家，以此类推，总共有：$10 * 9 * 8 * 7 * 6 = 30240$ 种可能性。
 
-**(b)** How many possibilities are there for Fred's schedule of dinners for that Monday
-through Friday, if Fred is willing to eat at the same restaurant more than once, but is
-not willing to eat at the same place twice in a row (or more)?
-
-**解答**：
+**(b)** 
 
 周一可以选10家餐厅，周二可以选9家，周三可以选9家，以此类推，总共有：$10 * 9^4 = 65610$ 种可能性。
 
 ## Problem 4
-A *round-robin tournament* is being held with n tennis players; this means that every
-player will play against every other player exactly once.
-
-**(a)** How many possible outcomes are there for the tournament (the outcome lists out
-who won and who lost for each game)?
-
-**解答**：
+**(a)** 
 
 一共有$\binom n 2$场比赛，每个比赛有两种结果（A赢或者A输），所以一共有$2^{\binom n 2}$种结果。
 
-**(b)** How many games are played in total?
-
-**解答**：
+**(b)** 
 
 每两个人要比赛一场，所以一共有$\binom n 2$场比赛
 
 ## Problem 5
-A *knock-out tournament* is being held with $2^n$ tennis players. This means that for each
-round, the winners move on to the next round and the losers are eliminated, until only
-one person remains. For example, if initially there are $2^4 = 16$ players, then there are
-8 games in the first round, then the 8 winners move on to round 2, then the 4 winners
-move on to round 3, then the 2 winners move on to round 4, the winner of which is
-declared the winner of the tournament. (There are various systems for determining who
-plays whom within a round, but these do not matter for this problem.)
-
-**(a)** How many rounds are there?
-
-**解答**：
+**(a)**
 
 每轮淘汰掉一半人，所以一共有$\log 2^n = n$轮。
 
-**(b)** Count how many games in total are played, by adding up the numbers of games
-played in each round.
-
-**解答**：
+**(b)**
 
 第一轮$2^{n-1}$场比赛，第二轮$2^{n-2}$场比赛，以此类推，总共有$\sum\limits_{i=0}^{n-1} 2^{i} = 2^n - 1$场比赛。
 
-**(c)** Count how many games in total are played, this time by directly thinking about it
-without doing almost any calculation.
-Hint: How many players need to be eliminated?
-
-**解答**：
+**(c)** 
 
 每场比赛淘汰掉一个人，一共需要淘汰至只剩一个人，所以一共$2^n - 1$场比赛。
 
 ## Problem 6
-There are 20 people at a chess club on a certain day. They each find opponents and
-start playing. How many possibilities are there for how they are matched up, assuming
-that in each game it does matter who has the white pieces (in a chess game, one player
-has the white pieces and the other player has the black pieces)?
-
-**解答**：
-
-(1) 从20个人里面挑10个人执白子，让他们分别挑选自己的对手，因此一共有$\binom{20}{10} \times 10!$种可能。
-
-(2) 把20个人排成一排，相邻的两个组成一组，则有$20!$种可能性，但是组的顺序不重要，所以一共有$\frac{20!}{10!}$种可能。
-
-(3) 从20个人里挑2个人排列，再从18个人里挑2个人排列，以此类推，生成10个组，10个组的顺序不重要，所以一共有
-$\frac{(20)_2(18)_2(16)_2...(2)_2}{10!} = \frac{20!}{10!}$种可能。
+1. 从20个人里面挑10个人执白子，让他们分别挑选自己的对手，因此一共有$\binom{20}{10} \times 10!$种可能。
+2. 把20个人排成一排，相邻的两个组成一组，则有$20!$种可能性，但是组的顺序不重要，所以一共有$\frac{20!}{10!}$种可能。
+3. 从20个人里挑2个人排列，再从18个人里挑2个人排列，以此类推，生成10个组，10个组的顺序不重要，所以一共有
+   $\frac{(20)_2(18)_2(16)_2...(2)_2}{10!} = \frac{20!}{10!}$种可能。
 
 ## Problem 7
-Two chess players, A and B, are going to play 7 games. Each game has three possible
-outcomes: a win for A (which is a loss for B), a draw (tie), and a loss for A (which is
-a win for B). A win is worth 1 point, a draw is worth 0.5 points, and a loss is worth 0
-points.
-
-**(a)** How many possible outcomes for the individual games are there, such that overall player A ends up
-with 3 wins, 2 draws, and 2 losses?
-
-**解答**：
+**(a)** 
 
 从7场比赛里选3场作为赢，从4场比赛里选2场作为平，剩下2场作为输：$\binom{7}{3}\binom{4}{2} = 84$。
 
-**(b)** How many possible outcomes for the individual games are there, such that A ends up with 4 points and
-B ends up with 3 points?
-
-**解答**：
+**(b)** 
 
 A拿到4分的方法有：赢4场，赢3场平2场，赢2场平4场，赢1场平6场。
 
 结果数量：$\binom{7}{4} + \binom{7}{3}\binom{4}{2} + \binom{7}{2}\binom{5}{4} + \binom{7}{1}\binom{6}{6} = 357$
 
-**(c)** Now assume that they are playing a best-of-7 match, where the match will end when either player has 4 points
-or when 7 games have been played, whichever is first. For example, if after 6 games the score is 4 to 2 in favor
-of A, then A wins the match and they don't play a 7th game. How many possible outcomes for the individual games
-are there, such that the match lasts for 7 games and A wins by a score of 4 to 3?
-
-**解答**：
+**(c)** 
 
 从(b)的思路中我们得知，A拿到4分的方法有：赢4场，赢3场平2场，赢2场平4场，赢1场平6场。要想让比赛持续7场，那么针对以上4中情况，
 A必须在最后一场赢或者平。
@@ -153,20 +81,14 @@ A必须在最后一场赢或者平。
 \binom{6}{3}\binom{3}{2} + \binom{7}{1} = 267$
 
 ## Problem 8
-
-**(a)** How many ways are there to split a dozen people into 3 teams, where one team
-has 2 people, and the other two teams have 5 people each?
-
-**解答**：
+**(a)**
 
 从12个人中选2个：$\binom{12}{2}$，从剩下的10个人里面选5个：$\binom{10}{5}$，剩下5个人组成第三队。
 但因为两个5人队无法区分，因此一共有：$\binom{12}{2}\binom{10}{5}/2! = 8316$
 
 或者直接套用分组公式：$\frac{12!}{2!5!5!2!}$
 
-**(b)** How many ways are there to split a dozen people into 3 teams, where each team has 4 people?
-
-**解答**：
+**(b)** 
 
 从12个人中选4个：$\binom{12}{4}$，从剩下的8个人里面选4个：$\binom{8}{4}$，剩下4个人组成第三队。
 但因为三个4人队无法区分，因此一共有：$\binom{12}{4}\binom{8}{4}/3! = 5775$
@@ -174,142 +96,73 @@ has 2 people, and the other two teams have 5 people each?
 或者直接套用分组公式：$\frac{12!}{4!4!4!3!}$
 
 ## Problem 9
-**(a)** How many paths are there from the point (0, 0) to the point (110, 111) in the plane such that each
-step either consists of going one unit up or one unit to the right?
-
-**解答**：
+**(a)** 
 
 从(0, 0)到达(110, 111)需要总共走221步，其中110步向右，剩下的111步向上，所以一共有$\binom{221}{110}$种路径。
 
-**(b)** How many paths are there from (0, 0) to (210, 211), where each step consists of going one unit up
-or one unit to the right, and the path has to go through (110, 111)?
-
-**解答**：
+**(b)** 
 
 到达(110, 111)有$\binom{221}{110}$种路径，同理，从(110, 111)到达(210, 211)有$\binom{200}{100}$种路径，
 一共有$\binom{221}{110}\binom{200}{100}$种路径。
 
 ## Problem 10
-To fulfill the requirements for a certain degree, a student can choose to take any 7 out of
-a list of 20 courses, with the constraint that at least 1 of the 7 courses must be a statistics course. 
-Suppose that 5 of the 20 courses are statistics courses.
-
-**(a)** How many choices are there for which 7 courses to take?
-
-**解答**：
+**(a)** 
 
 从20门课程里选7门一共有$\binom{20}{7}$种方式，7门课不包含统计课一共有$\binom{15}{7}$种方式，所以要拿到学位，
 一共有$\binom{20}{7} - \binom{15}{7}$种方式。
 
-**(b)** Explain intuitively why the answer to (a) is *not* $\binom{5}{1}\cdot\binom{19}{6}$.
-
-**解答**：
+**(b)** 
 
 这种算法会导致重复计数，比如：
 
 - 从5门统计课中选了Stat110，从剩余19门课中选了Stat210, C1, C2, C3, C4, C5，选课结果为：Stat110, Stat210, C1-C5。
-- 从5门统计课中选了Stat210，从剩余19门课中选了Stat110, C1, C2,
-C3, C4, C5，选课结果为：Stat210, Stat110, C1-C5。
+- 从5门统计课中选了Stat210，从剩余19门课中选了Stat110, C1, C2, C3, C4, C5，选课结果为：Stat210, Stat110, C1-C5。
 
 这两种情况是重复的，而(b)的计算方式无法排除这种重复。
 
 ## Problem 11
-Let $A$ and $B$ be sets with $|A| = n, |B| = m$.
-
-**(a)** How many functions are there from $A$ to $B$ (i.e., functions with domain $A$, assigning
-an element of $B$ to each element of $A$)?
-
-**解答**：
+**(a)** 
 
 对于$A$中的每个值，都有$m$种选择，所以一共有$m^n$个函数。
 
-**(b)** How many one-to-one functions are there from $A$ to $B$? (See Section A.2.1 of the
-math appendix for information about one-to-one functions.)
-
-**解答**：
+**(b)** 
 
 如果$n > m$，至少两个$A$中的值要映射到同一个$B$中的值，则不存在一对一函数。
 
 如果$n \le m$，则意味着从$m$中取$n$个值进行排列，有$(m)_n$个函数。
 
 ## Problem 12
-Four players, named A, B, C, and D, are playing a card game. A standard, well-shuffled
-deck of cards is dealt to the players (so each player receives a 13-card hand).
-
-**(a)** How many possibilities are there for the hand that player A will get? (Within a
-hand, the order in which cards were received doesn't matter.)
-
-**解答**：
+**(a)** 
 
 从52张牌中选13张：$\binom{52}{13}$
 
-**(b)** How many possibilities are there overall for what hands everyone will get, assuming
-that it matters which player gets which hand, but not the order of cards within a hand?
-
-**解答**：
+**(b)** 
 
 这就是把52张牌分成4个可区分的组：$\frac{52!}{13!13!13!13!}$。
 
 或者从52张牌中抽13张给A，从剩余39张牌中抽13张给B，以此类推：$\binom{52}{13}\binom{39}{13}\binom{26}{13}\binom{13}{13}$。
 
-**(c)** Explain intuitively why the answer to Part (b) is not the fourth power of the answer
-to Part (a).
-
-**解答**：
+**(c)** 
 
 因为这是无替代抽样，如果是$\binom{52}{13}^4$，则是有替代抽样。
 
 ## Problem 13
-A certain casino uses 10 standard decks of cards mixed together into one big deck, which
-we will call a *superdeck*. Thus, the superdeck has $52 \cdot 10 = 520$ cards, with $10$ copies
-of each card. How many different $10$-card hands can be dealt from the superdeck? The
-order of the cards does not matter, nor does it matter which of the original 10 decks
-the cards came from. Express your answer as a binomial coefficient.
-
-*Hint: Bose-Einstein.*
-
-**解答**：
-
 每张牌都有10张替代，而取10张卡，因此可视作52张牌的有替代无序抽样，
 根据*Bose-Einstein*有：$\binom{52 + 10 - 1}{10}=\binom{61}{10}$。
 
 ## Problem 14
-You are ordering two pizzas. A pizza can be small, medium, large, or extra large, with
-any combination of 8 possible toppings (getting no toppings is allowed, as is getting all
-8). How many possibilities are there for your two pizzas?
-
-**解答**：
-
 披萨大小有4种，馅料有$2^8$种，因此一共有$4*2^8=1024$种披萨。题目相当于从$1024$种披萨里有替代地
 选两个，根据*Bose-Einstein*有：$\binom{1024+2-1}{2}=\binom{1025}{2}$。
 
 # Story proofs
 
 ## Problem 15
-Give a story proof that $\sum_{k=0}^n \binom{n}{k} = 2^n$.
-
-**解答**：
-
 给定$n$个人，要从中选一些人组成一个队伍（选几个人无所谓，可以一个不选，也可以全选），一共有多少种可能。
 那么$\binom{n}{k}$就是从$n$个人里选$k$个人的可能性，加起来就是总共的可能性。
 换一种思路，对$n$个人中的每个人来说，有被选中和没被选中两种可能，因此一共是$2^n$种可能性。
 
 ## Problem 16
-Show that for all positive integers $n$ and $k$ with $n \ge k$,
-
-$$
-\binom{n}{k} + \binom{n}{k - 1} = \binom{n + 1}{k},
-$$
-
-doing this in two ways: (a) algebraically and (b) with a story, giving an interpretation
-for why both sides count the same thing.
-
-Hint for the story proof: Imagine an organization consisting of $n + 1$ people, with one
-of them pre-designated as the president of the organization.
-
-**解答**：
-
-**(a)** algebraically
+**(a)** 
 
 $$
 \begin{align*}
@@ -321,24 +174,13 @@ $$
 \end{align*}
 $$
 
-**(b)** with a story
+**(b)**
 
 假设有$n+1$个人的委员会，其中1个人是委员会主席，现在要从这$n+1$个人种选择$k$个人组成一个小组，有多少种方式？
 这相当于从$n+1$个人种选择$k$个人，即$\binom{n+1}{k}$种方式。再换一种思路，选$k$个人有种方式，一种是选了主席，
 有$\binom{n}{k-1}$种方式；另一种是没有选主席，有$\binom{n}{k}$种方式。所以$\binom{n+1}{k} = \binom{n}{k} + \binom{n}{k-1}$
 
 ## Problem 17
-
-Give a story proof that
-
-$$
-\sum\limits_{k=0}^n \binom{n}{k}^2 = \binom{2n}{n}
-$$
-
-for all positive integers n.
-
-**解答**：
-
 因为$\binom{n}{k} = \binom{n}{n-k}$，因此原式可写作：$\sum\limits_{k=0}^n \binom{n}{k}\binom{n}{n-k} = \binom{2n}{n}$。
 
 这就相当于从两个各有$n$个人的部门中选$n$个人组成一个团队，问一共有多少种方式。
@@ -346,19 +188,6 @@ for all positive integers n.
 等式右边相当于把两个部门的人混在一起，从$2n$个人中选$n$个人。
 
 ## Problem 18
-Give a story proof that
-
-$$
-\sum\limits_{k=1}^{n}k\binom{n}{k}^2 = n \binom{2n-1}{n-1}
-$$
-
-for all positive integers n.
-
-*Hint:* Consider choosing a committee of size $n$ from two groups of size $n$ each, where
-only one of the two groups has people eligible to become the chair of the committee.
-
-**解答**：
-
 上式可写作：$\sum\limits_{k=1}^{n}\binom{k}{1}\binom{n}{k}\binom{n}{n-k} = \binom{n}{1}\binom{2n-1}{n-1}$。
 
 这就相当于从两个各有$n$个人的部门A和B中选$n$个人组成一个团队，且必须从部门A中选一个人做团队主席，问一共有多少种方式。
@@ -366,34 +195,11 @@ only one of the two groups has people eligible to become the chair of the commit
 等式右边相当于把两个部门的人混在一起，先从部门A的$n$个人中选一个当主席，再从剩下的$2n-1$个人中选$n-1$个人。
 
 ## Problem 19
-Give a story proof that
-
-$$
-\sum\limits_{k=2}^n \binom{k}{2}\binom{n-k+2}{2} = \binom{n+3}{5}
-$$
-
-for all integers $n \ge 2$.
-
-*Hint*: Consider the middle number in a subset of $\{1, 2, ..., n + 3\}$ for size 5.
-
-**解答**：
-
 假设我们要从$1$到$n+3$中选取5个数（$n \ge 2$），我们可以从$2$到$n$中选一个数$k$，然后从小于等于$k$的数中选$2$个，从大于$k$的数中选$3$个。
 上述等式的左边就是这种选法的体现，右边是直接从$n+3$中选$5$个数。得证。
 
 ## Problem 20
-
-**(a)** Show using a story proof that
-
-$$
-\binom{k}{k} + \binom{k+1}{k} + \binom{k+2}{k} + ... + \binom{n}{k} = \binom{n+1}{k+1},
-$$
-
-where $n$ and $k$ are positive integers with $n \ge k$. This is called the *hockey stick identity*.
-
-*Hint*: Imagine arranging a group of people by age, and then think about the oldest person in a chosen subgroup.
-
-**解答**：
+**(a)**
 
 我们从$n+1$个人中抽$k+1$个人组成小组，假设小组中年纪最大的人是X。
 如果X也是全体中年纪最大的，那么组成小组有$\binom{n}{k}$种选择；
@@ -404,14 +210,7 @@ $$
 \sum\limits_{j=k}^{n}\binom{j}{k} = \binom{n+1}{k+1}
 $$
 
-**(b)** Suppose that a large pack of Haribo gummi bears can have anywhere between $30$
-and $50$ gummi bears. There are $5$ delicious avors: pineapple (clear), raspberry (red),
-orange (orange), strawberry (green, mysteriously), and lemon (yellow). There are $0$ nondelicious
-avors. How many possibilities are there for the composition of such a pack of
-gummi bears? You can leave your answer in terms of a couple binomial coefficients, but
-not a sum of lots of binomial coefficients.
-
-**解答**：
+**(b)**
 
 这是一个有替代无序抽样问题，根据`Bose-Einstein`，我们知道，对于有$5$种口味的软糖，组成一包$i$个软糖的方式有
 $\binom{i + 5 - 1}{i}=\binom{i+4}{i}=\binom{i+4}{4}$。
@@ -428,32 +227,7 @@ $$
 $$
 
 ## Problem 21
-
-Define $\genfrac{\{}{\}}{0pt}{0}{n}{k}$ as the number of ways to partition $\{1,2,...,n\}$
-into $k$ nonempty subsets, or the number of ways to have n students split up into $k$ groups
-such that each group has at least one student. For example, $\genfrac{\{}{\}}{0pt}{0}{4}{2} = 7$
-because we have the following possibilities.
-
-$$
-\{1\}, \{2,3,4\}\\
-\{2\}, \{1,3,4\}\\
-\{3\}, \{1,2,4\}\\
-\{4\}, \{1,2,3\}\\
-\{1,2\}, \{3,4\}\\
-\{1,3\}, \{2,4\}\\
-\{1,4\}, \{2,3\}
-$$
-
-Prove the following identities:
-
 **(a)**
-$$
-\genfrac{\{}{\}}{0pt}{0}{n+1}{k} = \genfrac{\{}{\}}{0pt}{0}{n}{k-1} + k\genfrac{\{}{\}}{0pt}{0}{n}{k}.
-$$
-
-*Hint*: I'm either in a group by myself or I'm not.
-
-**解答**：
 
 假设要把$n+1$个人分成$k$个小组：
 
@@ -465,13 +239,6 @@ $$
 
 
 **(b)**
-$$
-\sum\limits_{j=k}^{n}\binom{n}{j}\genfrac{\{}{\}}{0pt}{0}{j}{k} = \genfrac{\{}{\}}{0pt}{0}{n+1}{k+1}.
-$$
-
-*Hint*: First decide how many people are not going to be in my group.
-
-**解答**：
 
 假设要把$n+1$个人分成$k+1$个小组：
 
@@ -481,52 +248,13 @@ $$
 所以，$\sum\limits_{j=k}^{n}\binom{n}{j}\genfrac{\{}{\}}{0pt}{0}{j}{k} = \genfrac{\{}{\}}{0pt}{0}{n+1}{k+1}$。
 
 ## Problem 22
-
-The Dutch mathematician R.J. Stroeker remarked:
-
-> Every beginning student of number theory surely must have marveled at the miraculous
-  fact that for each natural number n the sum of the first n positive consecutive cubes is
-  a perfect square. [26]
-
-Furthermore, it is the square of the sum of the first $n$ positive integers! That is,
-
-$$
-1^3 + 2^3 + ... + n^3 = (1 + 2 + ... + n)^2.
-$$
-
-Usually this identity is proven by induction, but that does not give much insight into
-why the result is true, nor does it help much if we wanted to compute the left-hand side
-but didn't already know this result. In this problem, you will give a story proof of the
-identity.
-
-**(a)** Give a story proof of the identity
-
-$$
-1 + 2 + ... + n = \binom{n+1}{2}.
-$$
-
-*Hint*: Consider a round-robin tournament (see Exercise 4).
-
-**解答**：
+**(a)**
 
 假设$n+1$个人要循环比赛，每个人都需要和其他所有人比赛一次。我们把$n+1$个人从左往右排成一排，
 第一个人要和右边的$n$个人比赛，第二个人要和右边的$n-1$个人比赛，以此类推，第n个人要和最后一个人比赛，
 因此一共要进行$n + n - 1 + ... + 2 + 1$场比赛。因此$1 + 2 + ... + n = \binom{n+1}{2}$。
 
-**(b)** Give a story proof of the identity
-
-$$
-1^3 + 2^3 + ... + n^3 = 6\binom{n+1}{4} + 6\binom{n+1}{3} + \binom{n+1}{2}.
-$$
-
-It is then just basic algebra (not required for this problem) to check that the square of
-the right-hand side in (a) is the right-hand side in (b).
-
-*Hint*: Imagine choosing a number between 1 and n and then choosing 3 numbers between
-0 and n smaller than the original number, with replacement. Then consider cases based
-on how many distinct numbers were chosen.
-
-**解答**：
+**(b)**
 
 假设选了数字$i\ (1 \le i \le n)$，我们将从数字$0$到$i-1$中有替代抽取三个数字，因此一共有$i^3$种可能性。
 等式左边就是从$1$到$n$种抽一个数字，再从$0$到$n$中抽三个选中数字小的数字的全部可能性。
@@ -552,13 +280,6 @@ on how many distinct numbers were chosen.
 # Naive definition of probability
 
 ## Problem 23
-Three people get into an empty elevator at the first floor of a building that has 10
-floors. Each presses the button for their desired floor (unless one of the others has already pressed that button).
-Assume that they are equally likely to want to go to floors 2 through 10 (independently of each other).
-What is the probability that the buttons for 3 consecutive floors are pressed?
-
-**解答**：
-
 三个按钮连续被按的情况有：$\{2, 3, 4\}, \{3, 4, 5\}, \{4, 5, 6\}, \{5, 6, 7\}, \{6, 7, 8\}, \{7, 8, 9\}, \{8, 9, 10\}$。
 而对于每种情况，三个人有$3!$种方式去按按钮。而三个人按按钮一共有$9^3$种情况，因此三个连续按钮被按的概率为：
 
@@ -567,37 +288,16 @@ $$
 $$
 
 ## Problem 24
-A certain family has 6 children, consisting of 3 boys and 3 girls. Assuming that all
-birth orders are equally likely, what is the probability that the 3 eldest children are the 3 girls?
-
-**解答**：
-
 6个孩子的出生顺序一共有$6!$种可能，3个年长的孩子是女孩一共有$3!3!$种可能，所以三个年长孩子是女孩的概率为$\frac{3!3!}{6!} = 0.05$
 
 ## Problem 25
-A city with 6 districts has 6 robberies in a particular week. Assume the robberies are
-located randomly, with all possibilities for which robbery occurred where equally likely.
-What is the probability that some district had more than 1 robbery?
-
-**解答**：
-
 设事件$A$为：有某个社区发生一起以上抢劫案，事件$A$的逆事件$A^C$为：每个社区发生且只发生了一起抢劫案。
 $6$起抢劫案发生地点总共有$6^6$种可能，而每个社区发生且只发生一起抢劫案总共$6!$种可能性。
 
 因此$P(A^C) = \frac{6!}{6^6}$，则$P(A) = 1-P(A^C) = 1-\frac{6!}{6^6} \approx 0.9846$。
 
 ## Problem 26
-A survey is being conducted in a city with 1 million residents. It would be far too
-expensive to survey all of the residents, so a random sample of size 1000 is chosen
-(in practice, there are many challenges with sampling, such as obtaining a complete
-list of everyone in the city, and dealing with people who refuse to participate). The
-survey is conducted by choosing people one at a time, with replacement and with equal
-probabilities.
-
-**(a)** Explain how sampling with vs. without replacement here relates to the birthday
-problem.
-
-**解答**：
+**(a)**
 
 该问题和生日问题是同构的。
 
@@ -608,40 +308,17 @@ problem.
 对于无替代抽样，就相当于抽取的$1000$个人当中，没有两个人生日匹配。
 抽样的可能性为$(1\_000\_000)_{1000}$。
 
-**(b)** Find the probability that at least one person will get chosen more than once.
+**(b)**
 
 类似于生日问题，设事件$A$为至少有个人没选中了一次以上。那么：
 $P(A) = 1 - P(A^C) = 1 - \frac{(1\_000\_000)_{1000}}{1\_000\_000^{1000}}$。
 
 ## Problem 27
-A *hash table* is a commonly used data structure in computer science, allowing for fast
-information retrieval. For example, suppose we want to store some people's phone numbers.
-Assume that no two of the people have the same name. For each name *x*, a *hash
-function h* is used, letting *h(x)* be the location that will be used to store *x*'s phone
-number. After such a table has been computed, to look up *x*'s phone number one just
-recomputes *h(x)* and then looks up what is stored in that location.
-
-The hash function *h* is deterministic, since we don't want to get different results every
-time we compute *h(x)*. But *h* is often chosen to be *pseudorandom*. For this problem,
-assume that true randomness is used. Let there be *k* people, with each person's phone
-number stored in a random location (with equal probabilities for each location, independently
-of where the other people's numbers are stored), represented by an integer
-between *1* and *n*. Find the probability that at least one location has more than one
-phone number stored there.
-
-**解答**：
-
 如果$k > n$，则至少有个位置有多于一个电话号码的概率为$1$。
 
 如果$k \le n$，则至少有个位置有多于一个电话号码的概率为：$1 - \frac{(n)_k}{n^k}$。
 
 ## Problem 28
-A college has 10 time slots for its courses, and blithely assigns courses to completely
-random time slots, independently. The college offers exactly 3 statistics courses. What
-is the probability that 2 or more of the statistics courses are in the same time slot?
-
-**解答**：
-
 设事件$A$为2个或者更多的统计课位于同一时间槽，则$A^C$为所有统计课程位于不同时间槽。
 
 $$
@@ -649,45 +326,21 @@ P(A) = 1 - P(A^C) = 1 - \frac{(10)_3}{10^3} = 0.28
 $$
 
 ## Problem 29
-For each part, decide whether the blank should be filled in with $=$, $<$, or $>$, and give
-a clear explanation.
-
-**(a)** (probability that the total after rolling 4 fair dice is 21) $>$ (probability that the
-total after rolling 4 fair dice is 22).
-
-**解答**：
+**(a)**
 
 掷出$21$有4，5，6，6（12种可能性），3，6，6，6（4种可能性）和5，5，5，6（4种可能性）。
 
 掷出$22$有5，5，6，6（6种可能性）和4，6，6，6（4种可能性）。
 
-**(b)** (probability that a random 2-letter word is a palindrome) $=$ (probability that a
-random 3-letter word is a palindrome).
-
-**解答**：
+**(b)**
 
 2个字母的单词和三个字母的单词是回文的要求是一样的：都是第一个字母和最后一个字母相同。因此概率相同。
 
 ## Problem 30
-With definitions as in the previous problem, find the probability that a random n-letter
-word is a palindrome for $n = 7$ and for $n = 8$.
-
-**解答**：
-
 假设是26个小写字母组成的单词，$n = 7$和$n = 8$是回文的情况是一样的，都是前4个字母可以任意取。
 当$n=7$时，$P = \frac{26^4}{26^7} = \frac{1}{26^3}$；当$n=8$时，$P = \frac{26^4}{26^8}=\frac{1}{26^4}$。
 
 ## Problem 31
-Elk dwell in a certain forest. There are $N$ elk, of which a simple random sample of
-size $n$ are captured and tagged ("simple random sample" means that all $\binom{N}{n}$ sets of
-$n$ elk are equally likely). The captured elk are returned to the population, and then a new
-sample is drawn, this time with size $m$. This is an important method that is widely used
-in ecology, known as *capture-recapture*. What is the probability that exactly $k$ of the $m$
-elk in the new sample were previously tagged? (Assume that an elk that was captured
-before doesn't become more or less likely to be captured again.)
-
-**解答**：
-
 从$N$头驼鹿种选择$m$头，一共有$\binom{N}{m}$种可能。要保证其种有$k$头被二次选中，我们需要从$n$头已
 标记驼鹿种选择$k$头，再从剩余$N-n$头未被标记的驼鹿种选择$m-k$头，因此概率为：
 
@@ -698,15 +351,6 @@ $$
 其中$\ 0\le k \le n$。
 
 ## Problem 32
-Four cards are face down on a table. You are told that two are red and two are black, and
-you need to guess which two are red and which two are black. You do this by pointing
-to the two cards you're guessing are red (and then implicitly you're guessing that the
-other two are black). Assume that all configurations are equally likely, and that you do
-not have psychic powers. Find the probability that exactly $j$ of your guesses are correct,
-for $j = 0, 1, 2, 3, 4$.
-
-**解答**：
-
 两张红牌，两张黑牌排列的方式一共有$\frac{4!}{2!2!} = 6$种。设$k$是猜对红牌位置个数。
 
 - 当$k=0$时，说明猜测是红牌的位置放的是黑牌，显然另外两个位置是红牌，因此只有1种情况。
@@ -719,21 +363,11 @@ for $j = 0, 1, 2, 3, 4$.
 综上：$P(j=0) = \frac{1}{6}$, $P(j=2)=\frac{2}{3}$, $P(j=1)=P(j=3)=0$, $P(j=4)=\frac{1}{6}$。
 
 ## Problem 33
-A jar contains $r$ red balls and $g$ green balls, where $r$ and $g$ are fixed positive integers.
-A ball is drawn from the jar randomly (with all possibilities equally likely), and then a
-second ball is drawn randomly.
-
-**(a)** Explain intuitively why the probability of the second ball being green is the same
-as the probability of the first ball being green.
-
-**解答**：
+**(a)**
 
 连续抽两个球可以看作同时抽两个球，此时每个球是绿球的概率是一样的，都等于$\frac{g}{r+g}$。
 
-**(b)** Define notation for the sample space of the problem, and use this to compute the
-probabilities from **(a)** and show that they are the same.
-
-**解答**：
+**(b)**
 
 设$r$个红球编号从$R_1$到$R_r$，$g$个绿球的编号从$G_1$到$G_g$。样本空间$\Omega = \{(a, b)\}$，
 其中$a, b \in \{R_1, ..., R_r, G_1, ..., G_g\}$，且$a \ne b$。
@@ -742,11 +376,7 @@ probabilities from **(a)** and show that they are the same.
 
 第二个球为绿球的概率是：$\frac{\binom{g}{1}\binom{g-1}{1} + \binom{r}{1}\binom{g}{1}}{(r+g)_2}=\frac{g(g-1) + rg}{(r+g)(r+g-1)} = \frac{g}{r+g}$
 
-**(c)** Suppose that there are 16 balls in total, and that the probability that the two balls
-are the same color is the same as the probability that they are different colors. What
-are $r$ and $g$ (list all possibilities)?
-
-**解答**：
+**(c)**
 
 两个球是同一种颜色的概率是：$\frac{\binom{r}{1}\binom{r-1}{1} + \binom{g}{1}\binom{g-1}{1}}{16_2} = \frac{r(r-1) + g(g-1)}{16*15}$。
 
@@ -755,119 +385,64 @@ are $r$ and $g$ (list all possibilities)?
 由此，$r(r-1) + g(g-1) = 2rg, \ r + g = 16$，解该方程可知：$r = 10, \ g = 6$ 或 $r = 6, \ g = 10$。
 
 ## Problem 34
-
-A random 5-card poker hand is dealt from a standard deck of cards. Find the probability
-of each of the following possibilities (in terms of binomial coefficients).
-
-**(a)** A flush (all 5 cards being of the same suit; do not count a royal 
-flush, which is a flush with an ace, king, queen, jack, and 10).
-
-**解答**：
+**(a)**
 
 52张牌抽取5张总共有$\binom{52}{5}$种可能。每种花色抽出5张有$\binom{13}{5}$种可能，排除皇家同花顺，共有
 $\binom{13}{5}-1$种可能。总共有4种花色，因此抽出同花的概率为$\frac{4(\binom{13}{5}-1)}{\binom{52}{5}}$。
 
-**(b)** Two pair (e.g., two 3's, two 7's, and an ace).
-
-**解答**：
+**(b)**
 
 52张牌抽取5张总共有$\binom{52}{5}$种可能。抽出两对有$\binom{13}{2}\binom{4}{2}\binom{4}{2}\binom{44}{1}$。
 因此抽出两对的概率为$\frac{\binom{13}{2}\binom{4}{2}^2\cdot 44}{\binom{52}{5}}$。
 
 ## Problem 35
-A random 13-card hand is dealt from a standard deck of cards. What is the probability
-that the hand contains at least 3 cards of every suit?
-
-**解答**：
-
 13张牌要求每种花色至少3张，那只有$4, 3, 3, 3$这一种方式，也就是从4种花色种选一种抽4张牌，其余花色各抽3张。
 因此概率为$\frac{\binom{4}{1}\binom{13}{4}\binom{13}{3}^3}{\binom{52}{13}}$。
 
 ## Problem 36
-A group of 30 dice are thrown. What is the probability that 5 of each of the values
-1, 2, 3, 4, 5, 6 appear?
-
-**解答**：
-
 30个骰子总共有$6^{30}$种可能，1-6各出现5次总共有$\frac{30!}{(5!)^6}$种可能，因此概率为$\frac{30!}{(5!)^66^{30}}$。
 
 ## Problem 37
-A deck of cards is shuffed well. The cards are dealt one by one, until the first time an
-ace appears.
-
-**(a)** Find the probability that no kings, queens, or jacks appear before the first ace.
-
-**解答**：
+**(a)**
 
 我们只需要关注全部J、Q、K和A，一共十六张牌，其余的牌无关紧要。对于这16张牌，第一张牌是A的概率为$\frac{4}{16}=\frac{1}{4}$。
 因此没有J、Q或者K出现在A之前的概率为$\frac{1}{4}$。
 
-**(b)** Find the probability that exactly one king, exactly one queen, and exactly one jack
-appear (in any order) before the first ace.
-
-**解答**：
+**(b)**
 
 同样只需要关注全部J、Q、K和A，一共十六张牌。全部16张牌排列一共有$16!$种可能，恰好只有一张J、Q和K出现在第一张A之前
 意味着前三张牌必须是J、Q和K（任意排列），第四张牌必须是A，一共有$4^3\cdot3!\cdot4\cdot12!$种可能。因此，所求概率为$\frac{4^3\cdot3!\cdot4\cdot12!}{16!}=\frac{16}{455}$。
 
 ## Problem 38
-Tyrion, Cersei, and ten other people are sitting at a round table, with their seating
-arrangement having been randomly assigned. What is the probability that Tyrion and
-Cersei are sitting next to each other? Find this in two ways:
-
-**(a)** using a sample space of size $12!$, where an outcome is fully detailed about the seating;
-
-**解答**：
+**(a)**
 
 12个人全排列有$12!$种可能。先让Tyrion和Cersei坐一起，则有$12 \cdot 2$种可能，再让剩下的$10$个人
 随便坐，共有$10!$种可能。因此，Tyrion和Cersei坐一起的概率为$\frac{12 \cdot 2 \cdot 10!}{12!} = \frac{2}{11}$。
 
-
-**(b)** using a much smaller sample space, which focuses on Tyrion and Cersei.
-
-**解答**：
+**(b)**
 
 我们让Tyrion和Cersei挑位置，一共有$(12)_2$种可能，而Tyrion和Cersei坐一起则有$12\cdot 2$种可能。
 因此Tyrion和Cersei坐一起的概率为$\frac{12 \cdot 2}{(12)_2} = \frac{2}{11}$。
 
 ## Problem 39
-An organization with $2n$ people consists of $n$ married couples. A committee of size $k$ is
-selected, with all possibilities equally likely. Find the probability that there are exactly
-$j$ married couples within the committee.
-
-**解答**：
-
 从$2n$个人中选$k$个人有$\binom{2n}{k}$种可能。想要其中只有$j$对夫妇，则先从$n$对夫妇种选取$j$对，
 有$\binom{n}{j}$种可能；再从剩下的$n-j$对夫妇中，选$k - 2j$对，共有$\binom{n-j}{k-2j}$种可能，；
 再从$k-2j$对种，每对选一个人，共有$2^{k-2j}$种可能。
 因此，概率为：$\frac{\binom{n}{j}\binom{n-j}{k-2j}2^{k-2j}}{\binom{2n}{k}}$。
 
 ## Problem 40
-There are $n$ balls in a jar, labeled with the numbers $1, 2, ..., n$. A total of $k$ balls are
-drawn, one by one *with replacement*, to obtain a sequence of numbers.
-
-**(a)** What is the probability that the sequence obtained is strictly increasing?
-
-**解答**：
+**(a)**
 
 从$n$个球中有替代选$k$个球排列的方式有$n^k$种，$k$个球要严格递增，那么$k$个球必须互不相同，
 且只有一种排列，有$\binom{n}{k}$种可能。因此，概率为$\frac{\binom{n}{k}}{n^k}$。
 
-**(b)** What is the probability that the sequence obtained is increasing (but not necessarily
-strictly increasing, i.e., there can be repetitions)?
-
-**解答**：
+**(b)**
 
 从$n$个球中有替代选$k$个球排列的方式有$n^k$种，$k$个球要递增，则意味着从$n$个球中有替代选$k$个，
 且排列方式只有一种，有$\binom{n+k-1}{k}$种。
 因此，概率为$\frac{\binom{n+k-1}{k}}{n^k}$。
 
 ## Problem 41
-Each of $n$ balls is independently placed into one of $n$ boxes, with all boxes equally likely.
-What is the probability that exactly one box is empty?
-
-**解答**：
-
 $n$个球放入$n$个盒子总共有$n^n$种可能。要想只有一个空盒子，我们首先从$n$个盒子中选一个作为空盒子，总共有
 $n$种可能；剩下的$n-1$个盒子中，必有一个盒子中有$2$个球，其余盒子每个有且只有$1$个球；我们从$n-1$个盒子
 中选一个盒子放两个球，共有$n-1$种可能，在从$n$个球中选两个放入其中，总共有$\binom{n}{2}$种可能；然后将
@@ -877,15 +452,6 @@ $n$种可能；剩下的$n-1$个盒子中，必有一个盒子中有$2$个球，
 $\frac{n(n-1)\binom{n}{2}(n-2)!}{n^n} = \frac{\binom{n}{2}n!}{n^n} = \frac{n(n-1)n!}{2n^n}$。
 
 ## Problem 42
-A *norepeatword* is a sequence of at least one (and possibly all) of the usual 26 letters
-a, b, c, ..., z, with repetitions not allowed. For example, "course" is a norepeatword, but
-"statistics" is not. Order matters, e.g., "course" is not the same as "source".
-
-A norepeatword is chosen randomly, with all norepeatwords equally likely. Show that
-the probability that it uses all 26 letters is very close to $1 / \mathscr{e}$.
-
-**解答**：
-
 包含1个字母的非重复单词有$\binom{26}{1}1!$种，包含2个字母的非重复单词有$\binom{26}{2}2!$种，
 以此类推，包含$i$个字母的非重复单词有$\binom{26}{i}i! = \frac{26!}{(26-i)!}$种，
 
@@ -905,13 +471,6 @@ $$
 # Axioms of probability
 
 ## Problem 43
-Show that for any events A and B,
-$$
-P(A) + P(B) - 1 \le P(A \cap B) \le P(A \cup B) \le P(A) + P(B)
-$$
-
-**解答**：
-
 $$
 \because P(A \cup B) = P(A) + P(B) - P(A \cap B) \\
 P(A \cap B) \ge 0 \\
@@ -936,17 +495,6 @@ P(A^C) = 1 - P(A), P(B^C) = 1 - P(B) \\
 $$
 
 ## Problem 44
-Let $A$ and $B$ be events. The *difference* $B - A$ is defined to be the set of all elements of
-$B$ that are not in $A$. Show that if $A \subseteq B$, then
-
-$$
-P(B - A) = P(B) - P(A)
-$$
-
-directly using the axioms of probability.
-
-**解答**：
-
 $$
 \begin{align*}
 P(B-A) &= P(B\cap A^C)\\
@@ -959,18 +507,6 @@ P(B-A) &= P(B\cap A^C)\\
 $$
 
 ## Problem 45
-Let $A$ and $B$ be events. The *symmetric difference* $A \triangle B$ is defined to be the set of all
-elements that are in $A$ or $B$ but not both. In logic and engineering, this event is also
-called the $XOR$ (*exclusive or*) of $A$ and $B$. Show that
-
-$$
-P(A \triangle B) = P(A) + P(B) - 2(P \cap B)
-$$
-
-directly using the axioms of probability.
-
-**解答**：
-
 $$
 \because A \triangle B = A \cup B - A \cap B, \text{ and } A \cap B \subseteq A \cup B\\
 \begin{align*}
@@ -981,13 +517,8 @@ $$
 $$
 
 ## Problem 46
-Let $A_1, A_2, ... , A_n$ be events. Let $B_k$ be the event exactly $k$ of the $A_i$ occur, and $C_k$ be
-the event that at least $k$ of the $A_i$ occur, for $0 \le k \le n$. Find a simple expression for
-$P(B_k)$ in terms of $P(C_k)$ and $P(C_{k+1})$.
-
-**解答**：
-
 **(1)**
+
 $B_k$的逆事件为：$A_i$发生个数小于$k$，或大于$k$。而$A_i$发生个数小于$k$的概率为：$1 - P(C_k)$，
 而$A_i$发生个数大于$k$的概率为：$P(C_{k+1})$，且这两个事件互斥。因此：
 
@@ -996,6 +527,7 @@ P(B_k) = 1 - P(B_k^C) = 1 - (1 - P(C_k) + P(C_{k+1})) = P(C_k) - P(C_{k+1})
 $$
 
 **(2)**
+
 $B_k = C_k - C_{k+1}$，且$C_{k+1} \subseteq C_{k}$，因此：
 
 $$
@@ -1003,13 +535,7 @@ P(B_k) = P(C_k - C_{k+1}) = P(C_k) - P(C_{k+1})
 $$
 
 ## Problem 47
-Events $A$ and $B$ are _independent_ if $P(A \cap B)=P(A)P(B)$ (independence is explored
-in detail in the next chapter).
-
-**(a)** Give an example of independent events $A$ and $B$ in a finite sample space $S$
-(with neither equal to $\emptyset$ or $S$), and illustrate it with a Pebble World diagram.
-
-**解答**：
+**(a)**
 
 假设掷一枚公平的硬币两次。样本空间$S$为：$\{HH, HT, TH, TT\}$。设事件$A$为第一次掷硬币正面朝上，
 事件$B$为第二次掷硬币正面朝上。则$A=\{HH, HT\}$，$B=\{HH, TH\}$，$A \cap B = \{HH\}$，因此$P(A)=1/2$，$P(B)=1/2$，$P(A \cap B)=1/4$。
@@ -1020,20 +546,7 @@ in detail in the next chapter).
 
 ![](../assets/ch01-p47-a.png)
 
-**(b)** Consider the experiment of picking a random point in the rectangle
-
-$$
-R = \{(x,y): 0 < x < 1, 0 < y < 1\},
-$$
-
-where the probability of the point being in any particular region contained within $R$ is
-the area of that region. Let $A_1$ and $B_1$ be rectangles contained within $R$, with areas not
-equal to $0$ or $1$. Let $A$ be the event that the random point is in $A_1$, and $B$ be the event
-that the random point is in $B_1$. Give a geometric description of when it is true that $A$
-and $B$ are independent. Also, give an example where they are independent and another
-example where they are not independent.
-
-**解答**：
+**(b)**
 
 我们假设$A_1$的面积为$R_A$，$B_1$的面积为$R_B$。则$P(A)=R_A$，$P(B)=R_B$。如果$A$和$B$相互独立，则
 $P(A \cap B) = P(A)P(B)$，而$P(A \cap B)$等于$A_1$和$B_1$相交的面积。也就是说，$A$和$B$相互独立，
@@ -1043,13 +556,7 @@ $A$和$B$相互独立的例子：$A_1$占据$1/2$，$B_1$占据$1/2$，$A_1$和$
 
 $A$和$B$不独立的例子：$A_1$和$B_1$相重合。
 
-**(c)** Show that if A and B are independent, then
-
-$$
-P(A \cup B) = P(A) + P(B) - P(A)P(B) = 1 - P(A^C)P(B^C)
-$$
-
-**解答**：
+**(c)**
 
 $$
 \begin{align*}
@@ -1064,31 +571,6 @@ P(A \cup B)&=P(A)+P(B)-P(A \cap B)\\
 $$
 
 ## Problem 48
-Arby has a belief system assigning a number $P_{Arby}(A)$ between $0$ and $1$ to every event
-$A$ (for some sample space). This represents Arby's degree of belief about how likely $A$
-is to occur. For any event $A$, Arby is willing to pay a price of $1000 \cdot P_{Arby}(A)$
-to buy a certificate such as the one shown below:
-
-> **Certificate**: The owner of this certificate can redeem it for $\$1000$ if $A$ occurs. No value if $A$ does not occur, except as required by federal, state, or local law. No expiration date.
-
-Likewise, Arby is willing to sell such a certificate at the same price. Indeed, Arby is
-willing to buy or sell any number of certificates at this price, as Arby considers it the
-"fair" price.
-
-Arby stubbornly refuses to accept the axioms of probability. In particular, suppose that
-there are two _disjoint_ events $A$ and $B$ with
-
-$$
-P_{Arby}(A \cup B) \neq P_{Arby}(A) + P_{Arby}(B)
-$$
-
-Show how to make Arby go bankrupt, by giving a list of transactions Arby is willing
-to make that will _guarantee_ that Arby will lose money (you can assume it will be
-known whether $A$ occurred and whether $B$ occurred the day after any certificates are
-bought/sold).
-
-**解答**：
-
 设事件$C=A \cup B$。由于$A$和$B$互斥，$C$发生当且仅当$A$或$B$恰有一个发生；二者都不发生时$C$不发生。
 令$P_A = P_{Arby}(A)$，$P_B=P_{Arby}(B)$，$P_C=P_{Arby}(C)$。
 
@@ -1147,11 +629,6 @@ $$
 # Inclusion-exclusion
 
 ## Problem 49
-A fair die is rolled n times. What is the probability that at least 1 of the 6 values never
-appears?
-
-**解答**：
-
 设事件$A_i$表示数字$i$从来不会出现，则问题就是求事件$\bigcup\limits_{i=1}^{6}A_i$的概率，根据包含-排斥法则：
 
 $$
@@ -1162,12 +639,6 @@ P(\bigcup\limits_{i=1}^{6}A_i) &= \sum\limits_{i=1}^6 (-1)^{i+1} \binom{6}{i} \l
 $$
 
 ## Problem 50
-A card player is dealt a 13-card hand from a well-shuffled, standard deck of cards.
-What is the probability that the hand is void in at least one suit ("void in a suit" means
-having no cards of that suit)?
-
-**解答**：
-
 设事件$A_i$代表缺一种花色，则至少缺一种花色的概率为：
 
 $$
@@ -1184,12 +655,6 @@ P(\bigcup\limits_{i=1}^{4} A_i) &= \sum\limits_{i}P(A_i) -
 $$
 
 ## Problem 51
-For a group of 7 people, find the probability that all 4 seasons (winter, spring,
-summer, fall) occur at least once each among their birthdays, assuming that all seasons
-are equally likely.
-
-**解答**：
-
 设事件$A$、$B$、$C$和$D$分别表示冬天、春天、夏天和秋天至少出现一次的概率。我们要求的$P(A \cap B \cap C \cap D)$。
 而$P(A \cap B \cap C \cap D) = 1 - P((A \cap B \cap C \cap D)^C) = 1 - P(A^C \cup B^C \cup C^C \cup D^C)$。
 根据容斥原理和对称性，我们有：
@@ -1206,13 +671,6 @@ $$
 所以，$P(A \cap B \cap C \cap D) \approx = 1 - 0.4873 = 0.5127$。
 
 ## Problem 52
-A certain class has 20 students, and meets on Mondays and Wednesdays in a classroom
-with exactly 20 seats. In a certain week, everyone in the class attends both days. On
-both days, the students choose their seats completely randomly (with one student per
-seat). Find the probability that no one sits in the same seat on both days of that week.
-
-**解答**：
-
 设事件$S_i$表示学生$i$两次坐在同一个座位上。则问题就是要求$1 - P(\bigcup\limits_{i=1}^{20}S_i)$。
 
 根据容斥原理和对称性，我们有：
@@ -1234,29 +692,18 @@ $$
 因此，没有一个人坐在同一个座位的概率约为$\mathscr{e}^{-1}$。
 
 ## Problem 53
-Fred needs to choose a password for a certain website. Assume that he will choose an
-8-character password, and that the legal characters are the lowercase letters a, b, c, ...,
-z, the uppercase letters A, B, C, ..., Z, and the numbers 0, 1, ..., 9.
-
-**(a)** How many possibilities are there if he is required to have at least one 
-lowercase letter in his password?
-
-**解答**：
+**(a)**
 
 所有密码的可能性为$62^8$，不包含小写字母的密码可能性为$36^8$，因此至少包含一个小写字母的
 可能性为：$62^8 - 36^8$。
 
-**(b)** How many possibilities are there if he is required to have at least one lowercase
-letter and at least one uppercase letter in his password?
-
-**解答**：
+**(b)**
 
 所有密码的可能性为$62^8$，不包含小写字母的密码可能性都为$36^8$，不包含大写字母的密码可能性都为$36^8$，
 不包含大小写字母的密码可能性都为$10^8$，因此至少包含一个大写字母的和一个小写字母的
 可能性为：$62^8 - 2*36^8 + 10^8$。
 
-**(c)** How many possibilities are there if he is required to have at least one lowercase
-letter, at least one uppercase letter, and at least one number in his password?
+**(c)**
 
 所有密码的可能性为$62^8$，不包含小写字母的密码可能性都为$36^8$，不包含大写字母的密码可能性都为$36^8$，
 不包含数字的密码可能性为$52^8$，不包含小写字母和数字的可能性为$26^8$，不包含小写字母和数字的可能性为$26^8$
@@ -1264,17 +711,6 @@ letter, at least one uppercase letter, and at least one number in his password?
 可能性为：$62^8 - 2*36^8 - 52^8 + 2*26^8 + 10^8$。
 
 ## Problem 54
-Alice attends a small college in which each class meets only once a week.
-She is deciding between 30 non-overlapping classes. There are 6 classes 
-to choose from for each day of the week, Monday through Friday. Trusting 
-in the benevolence of randomness, Alice decides to register for 7 
-randomly selected classes out of the 30, with all choices equally likely. 
-What is the probability that she will have classes every day, Monday
-through Friday? (This problem can be done either directly using the naive 
-definition of probability, or using inclusion-exclusion.)
-
-**解答**：
-
 **方法一**：
 
 从$30$门课中选$7$个总共有$\binom{30}{7}$中可能；7门课放在周一到周五，要求每天都
@@ -1308,19 +744,11 @@ $$
 因此周一到周五每天都有课的概率为$P \approx 1 - 0.6976 = 0.3024$。
 
 ## Problem 55
-A club consists of 10 seniors, 12 juniors, and 15 sophomores. An 
-organizing committee of size 5 is chosen randomly (with all subsets of
-size 5 equally likely).
-
-**(a)** Find the probability that there are exactly 3 sophomores in the 
-committee.
-
-**解答**：
+**(a)**
 
 组成委员会一共有$\binom{37}{5}$种可能，恰好有3名二年级学生共有$\binom{15}{3}\binom{22}{2}$种可能，因此概率为$\frac{\binom{15}{3}\binom{22}{2}}{\binom{37}{5}} \approx 0.2411$。
 
-**(b)** Find the probability that the committee has at least one 
-representative from each of the senior, junior, and sophomore classes.
+**(b)**
 
 设事件$A$表示委员会没有四年级学生，事件$B$表示委员会没有三年级学生，事件$C$表示委员会没有二年级学生，根据容斥原理有：
 
@@ -1344,75 +772,29 @@ $$
 
 因此，委员会成员各年级至少有一个的概率为$P \approx 1 - 0.3582 = 0.6418$。
 
-
 # Mixed practice
 
 ## Problem 56
-For each part, decide whether the blank should be filled in with $=$, $<$, or $>$, and give a clear explanation. 
-In (a) and (b), order doesn't matter.
-
-**(a)** (number of ways to choose 5 people out of 10) $>$ (number of ways to choose 6 people out of 10)
-
-**解答**：
+**(a)**
 
 $\binom {10} {6} = \binom{10}{4} \lt \binom{10}{5}$
 
-**(b)** (number of ways to break 10 people into 2 teams of 5) $<$ (number of ways to break 10 people into a team
-of 6 and a team of 4)
-
-**解答**：
+**(b)**
 
 把10个人分成6人队和4人队的方式有$\binom{10}{4}$种，把10个人分成两个5人队的方式有$\frac{\binom{10}{5}} 2$种（重点在于2个五人队无法区分，所以要除以2）。
 
-**(c)** (probability that all 3 people in a group of 3 were born on January 1) $<$ (probability that in a group of 3 people, 1 was born on each of January 1, 2, and 3)
-
-**解答**：
+**(c)**
 
 三个人都出身在一月一号的概率为$\frac{1}{365^3}$，但三个人依次出生在一月一号、二号和三号的概率为$\frac{3!}{365^3}$。
 
-Martin and Gale play an exciting game of "toss the coin",  where they toss a fair coin until the pattern *HH* occurs 
-(two consecutive Heads) or the pattern *TH* occurs (Tails followed immediately by Heads). Martin wins the game if and
-only if *HH* occurs before *TH* occurs.
+**(d)**
 
-**(d)** (probability that Martin wins) $<$ 1/2
-
-**解答**：
-
-(1) 如果第一次硬币是*T*，那么Martin肯定输。因为后续掷出*T*游戏会继续，掷出*H*他就输。
-(2) 如果第一次硬币是*H*，那么看第二次掷硬币结果。如果第二次是*H*，Martin赢；如果第二次是*T*，那么又成了情况(1)，Martin肯定输。
+1. 如果第一次硬币是*T*，那么Martin肯定输。因为后续掷出*T*游戏会继续，掷出*H*他就输。
+2. 如果第一次硬币是*H*，那么看第二次掷硬币结果。如果第二次是*H*，Martin赢；如果第二次是*T*，那么又成了情况(1)，Martin肯定输。
 
 所以综合来看，Martin赢得概率只有$1/4$。
 
 ## Problem 57
-Take a deep breath before attempting this problem. In the book *Innumeracy*, John
-Allen Paulos writes:
-
-> Now for better news of a kind of immortal persistence. First, take a deep
-  breath. Assume Shakespeare's account is accurate and Julius Caesar gasped
-  ["Et tu, Brute!"] before breathing his last. What are the chances you just
-  inhaled a molecule which Caesar exhaled in his dying breath?
-
-Assume that one breath of air contains $10^22$ molecules, and that there are $10^44$ molecules
-in the atmosphere. (These are slightly simpler numbers than the estimates that Paulos
-gives; for the purposes of this problem, assume that these are exact. Of course, in reality
-there are many complications such as different types of molecules in the atmosphere,
-chemical reactions, variation in lung capacities, etc.)
-
-Suppose that the molecules in the atmosphere now are the same as those in the atmosphere
-when Caesar was alive, and that in the $2000$ years or so since Caesar, these
-molecules have been scattered completely randomly through the atmosphere. Also assume
-that Caesar's last breath was sampled *without* replacement but that your breathing
-is sampled *with* replacement (without replacement makes more sense but with replacement
-is easier to work with, and is a good approximation since the number of molecules
-in the atmosphere is so much larger than the number of molecules in one breath).
-
-Find the probability that at least one molecule in the breath you just took was shared
-with Caesar's last breath, and give a simple approximation in terms of $\mathit{e}$
-
-*Hint*: As discussed in the math appendix, $(1 + \frac{x}{n})^n \approx \mathit{e}^x$ for $n$ large.
-
-**解答**：
-
 令事件$A$为一次呼吸包含至少一个凯撒分子。则事件$A^C$为一次呼吸不包含任何凯撒分子。
 
 因为假设每次呼吸是有替代采样，因此一次呼吸中某个分子是凯撒分子的概率为$\frac{10^{22}}{10^{44}} = \frac{1}{10^{22}}$，不是凯撒分子的概率为$1-\frac{1}{10^{22}}$。因而，一次呼吸中不包含任何凯撒分子的
@@ -1421,97 +803,45 @@ with Caesar's last breath, and give a simple approximation in terms of $\mathit{
 所以：$P(A) = 1-P(A^C) \approx 1 - \mathit{e}^{-1} \approx 0.6321$。
 
 ## Problem 58
-A widget inspector inspects 12 widgets and finds that exactly 3 are defective. Unfortunately,
-the widgets then get all mixed up and the inspector has to find the 3 defective
-widgets again by testing widgets one by one.
-
-**(a)** Find the probability that the inspector will now have to test at least 9 widgets.
-
-**解答**：
+**(a)**
 
 设事件$A$为至少需要测试$9$个组件，则$A$的逆事件为最多需要测试$8$个组件，即$3$个损坏组件出现在前$8$个组件中。
 我们只考虑前$8$个组件，一共有$(12)_8$种可能，而$3$个损坏组件出现在前$8$个组件中，共有$\binom{9}{5}8!$种可能。
 
 因此$P(A) = 1-P(A^C) = 1 - \frac{\binom{9}{5}8!}{(12)_8}$。
 
-**(b)** Find the probability that the inspector will now have to test at least 10 widgets.
+**(b)**
 
 类似(a)，概率为：$1 - \frac{\binom{9}{6}9!}{(12)_9}$。
 
 ## Problem 59
-There are 15 chocolate bars and 10 children. In how many ways can the 
-chocolate bars be distributed to the children, in each of the following 
-scenarios?
-
-**(a)** The chocolate bars are fungible (interchangeable).
-
-**解答**：
+**(a)**
 
 可以看作从10个孩子中有替换地抽15个人，根据Bose-Einstein有：
 $\binom{15 + 10 - 1}{9}=\binom{24}{9}=1307504$。
 
-**(b)** The chocolate bars are fungible, and each child must receive at
-least one.
-
-_Hint_: First give each child a chocolate bar, and then decide what to do 
-with the rest.
-
-**解答**：
+**(b)**
 
 首先给每个孩子一块巧克力，只有一种方式（一人一个），然后把剩下的5块巧克力分给10个孩子，相当于从10个孩子种中有替换地抽5人，根据Bose-Einstein有：$\binom{5 + 10 - 1}{9}=\binom{14}{9}=2002$。
 
-**(c)** The chocolate bars are not fungible (it matters which particular 
-bar goes where).
-
-**解答**：
+**(c)**
 
 巧克力棒不可替代，且关注每个巧克力棒发给谁，相当于从10个孩子里有替换且有序地抽15个人，总共有$10^15$种可能。
 
-**(d)** The chocolate bars are not fungible, and each child must receive 
-at least one.
-
-_Hint_: The strategy suggested in (b) does not apply. Instead, consider 
-_randomly_ giving the chocolate bars to the children, and apply 
-inclusion-exclusion.
-
-**解答**：
+**(d)**
 
 至少一个孩子没有巧克力的分配方法有$(10-1)^{15}$种可能，至少两个孩子没有巧克力的分配方法有$(10-2)^{15}$种可能，至少$i$个孩子没有巧克力的分配方法有$(10-i)^{15}$种可能。根据容斥原理，15个孩子种某个（些）孩子没有巧克力的分配方式有$\sum\limits_{i=1}^9(-1)^{i+1}\binom{10}{i}(10-i)^{15}$，因此每个孩子至少一块巧克力的分配方法总共有$10^{15}-\sum\limits_{i=1}^9(-1)^{i+1}\binom{10}{i}(10-i)^{15}$种可能。
 
 ## Problem 60
-Given $n \ge 2$ numbers $(a_1, a_2, ..., a_n)$ with no repetitions, a 
-_bootstrap sample_ is a sequence $(x_1, x_2, ..., x_n)$ formed from the 
-$a_j$'s by sampling with replacement with equal probabilities. Bootstrap 
-samples arise in a widely used statistical method known as the _bootstrap_. 
-For example, if $n = 2$ and $(a_1, a_2) = (3, 1)$, then the possible 
-bootstrap samples are $(3, 3), (3, 1), (1, 3)$ and $(1, 1)$.
-
-**(a)** How many possible bootstrap samples are there for $(a_1,...,a_n)$?
-
-**解答**：
+**(a)**
 
 有替代有序采样，总共有$n^n$种可能。
 
-**(b)** How many possible bootstrap samples are there for $(a_1,...,a_n)$,
-if order does not matter (in the sense that it only matters how many 
-times each $a_j$ was chosen, not the order in which they were chosen)?
-
-**解答**：
+**(b)**
 
 有替代无需采样，根据Bose-Einstein有$\binom{2n-1}{n-1}$种可能。
 
-**(c)** One random bootstrap sample is chosen (by sampling from $a_1,..., a_n$
-with replacement, as described above). Show that not all unordered   
-bootstrap samples (in the sense of (b)) are equally likely. Find an 
-unordered bootstrap sample $b_1$ that is as likely as possible, and an unordered bootstrap sample $b_2$ that is as unlikely as possible. Let
-$p_1$ be the probability of getting $b_1$ and $p_2$ be the probability of 
-getting $b_2$ (so $p_i$ is the probability of getting the _specific_ 
-unordered bootstrap sample $b_i$). What is $p_1/p_2$? What is
-the ratio of the probability of getting an unordered bootstrap sample 
-whose probability is $p_1$ to the probability of getting an unordered 
-sample whose probability is $p_2$?
-
-**解答**：
+**(c)**
 
 设无序*bootstrap sample*用计数向量
 
@@ -1535,22 +865,6 @@ $b_2=(a_1,a_1,...,a_1)$，$p_2=P(b_2)=\frac{1}{n^n}$。
 $p_1/p_2=n!$。
 
 ## Problem 61
-There are 100 passengers lined up to board an airplane with 100 seats 
-(with each seat assigned to one of the passengers). The first passenger 
-in line crazily decides to sit in a randomly chosen seat (with all seats 
-equally likely). Each subsequent passenger takes their assigned seat if 
-available, and otherwise sits in a random available seat. What is
-the probability that the last passenger in line gets to sit in their 
-assigned seat? (This is a common interview problem, and a beautiful 
-example of the power of symmetry.)
-
-_Hint_: Call the seat assigned to the $j$th passenger in line seat $j$
-(regardless of whether the airline calls it seat 23A or whatever). What 
-are the possibilities for which seats are available to the last passenger 
-in line, and what is the probability of each of these possibilities?
-
-**解答**：
-
 1. 如果第1个乘客选择了座位1，那么最后一个乘客必然选择座位100。
 2. 如果第1个乘客选择了座位100，那么最后一个乘客必然选择座位1。
 3. 如果第1个乘客选择了除去座位1和座位100之外的座位i：
@@ -1562,42 +876,11 @@ in line, and what is the probability of each of these possibilities?
 情况是等可能的，两者的概率都是$1/2$。
 
 ## Problem 62
-In the birthday problem, we assumed that all 365 days of the year are 
-equally likely (and excluded February 29). In reality, some days are 
-slightly more likely as birthdays than others. For example, scientists 
-have long struggled to understand why more babies are born 9 months after 
-a holiday. Let $\bold{p}=(p_1,p_2,...,p_{365})$ be the vector of birthday
-probabilities, with $p_j$ the probability of being born on the $j$-th day of the year (February 29 is still excluded, with no offense intended to 
-Leap Dayers).
-
-The $k$-th _elementary symmetric polynomial_ in the variables $x_1,...,x_n$
-is defined by
-
-$$
-e_k(x_1,...,x_n) = \sum\limits_{1\le j_1 <j_2<...<j_k\le n} x_{j_1}...x_{j_k}
-$$
-
-This just says to add up all of the $\binom{n}{k}$ terms we can get by 
-choosing and multiplying $k$ of the variables. For example, 
-$e_1(x_1,x_2,x_3)=x_1+x_2+x_3, e_2(x_1,x_2,x_3)=x_1x_2+x_1x_3+x_2x_3$,
-and $e_3(x_1,x_2,x_3)=x_1x_2x_3$.
-
-Now let $k \ge 2$ be the number of people.
-
-**(a)** Find a simple expression for the probability that there is at 
-least one birthday match, in terms of $\bold{p}$ and an elementary 
-symmetric polynomial.
-
-**解答**：
+**(a)**
 
 我们求逆事件，即所有$k$个人的生日都不相同的概率。也就是从365天中选取$k$天进行排列得到的概率，即$k!e_k(\bold{p})$。因此至少一个日期匹配的概率为$1-k!e_k(\bold{p})$。
 
-
-**(b)** Explain intuitively why it makes sense that $P$ (at least one 
-birthday match) is minimized when $p_j=\frac{1}{365}$ for all $j$, by 
-considering simple and extreme cases.
-
-**解答**：
+**(b)**
 
 直观上，生日分布越“分散”，两个人或$k$个人碰到同一个生日的可能性越小；而均匀分布是最分散的分布。
 
@@ -1617,38 +900,7 @@ $$
 
 对$k$个人也一样：如果生日集中在少数几天，重合机会很大；均匀分布在365天上时，所有不同生日组合最多、最分散，因此“至少一对相同”的概率最小。所以均匀分布$p_j=\frac{1}{365}$使匹配概率最小是合理的。
 
-**(c)** The famous _arithmetic mean-geometric mean inequality_ says that 
-for $x,y \ge 0$,
-
-$$
-\frac{x+y}{2} \ge \sqrt{xy}.
-$$
-
-This inequality follows from adding $4xy$ to both sides of 
-$x^2-2xy+y^2=(x-y)^2 \ge 0$. Define $\bold{r} = (r_1,...,r_{365})$ by
-$r_1=r_2=(p_1+p_2)/2, r_j=p_j$ for $3 \le j \le 365$. Using the
-arithmetic mean-geometric mean bound and the fact, which you should 
-verify, that
-
-$$
-e_k(x_1,...,x_n)=x_1x_2e_{k-2}(x3,...,x_n)+(x_1+x_2)e_{k-1}(x_3,...,x_n)+
-e_k(x_3,...,x_n),
-$$
-
-show that
-
-$$
-P(\text{at least one birthday match}|\bold{p}) \ge
-P(\text{at least one birthday match}|\bold{r}),
-$$
-
-with strict inequality if $\bold{p} \ne \bold{r}$ where the "given $\bold
-{r}$" notation means that the birthday probabilities are given by 
-$\bold{r}$. Using this, show that the value of $\bold{p}$ that minimizes 
-the probability of at least one birthday match is given by 
-$p_j=\frac{1}{365}$ for all $j$.
-
-**解答**：
+**(c)**
 
 因为$P(至少一对相同|\bold{p})=1-k!e_k(\bold{p})$，所以要证明$P(\bold{p})\ge P(\bold{r})$，等价于证明$e_k(\bold{p}) \le e_k(\bold{r})$。
 
