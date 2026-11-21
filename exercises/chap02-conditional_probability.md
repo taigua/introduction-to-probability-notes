@@ -248,6 +248,54 @@ P(A_3) &= P(A_1)(A_3|A_1) + P(A_1^c)P(A_3|A_1^c) \\
 \end{align*}
 $$
 
+## Problem 11
+
+使用**Odds**公式的贝叶斯形式可知：
+
+$$
+\begin{align*}
+\frac{P(A|W)}{P(A^c|W)} &=
+\frac{P(A)}{P(A^c)} \cdot \frac{P(W|A)}{P(W|A^c)} \\
+\frac{0.6}{0.4} &= odds(A) \cdot \frac{0.7}{0.3} \\
+odds(A) &= \frac{9}{14}
+\end{align*}
+$$
+
+因此，$P(A)=\frac{odds(A)}{1+odds(A)} \approx 0.3913$。
+
+## Problem 12
+**(a)**
+
+设事件$A$表示Alice发送了比特$1$，事件$B$表示Bob收到了比特$1$。
+由题设可知，$P(A)=P(A^c)=0.5$，$P(B|A)=0.9$，$P(B^c|A)=0.1$，
+$P(B^c|A^c)=0.95$以及$P(B|A^c)=0.05$。
+
+$$
+\begin{align*}
+odds(A|B) &= \frac{P(A)P(B|A)}{P(A^c)P(B|A^c)} \\
+&= \frac{0.5*0.9}{0.5*0.05} \\
+&= 18
+\end{align*}
+$$
+
+因此，$P(A|B)=\frac{18}{1+18} \approx 0.9474$。
+
+**(b)**
+
+设事件$A$表示Alice发送了比特$1$，事件$B_i \ (i \in [1,3])$表示
+Bob收到的第$i$位比特是$1$。由题设可知，$P(A)=P(A^c)=0.5$，$P(B_i|A)=0.9$，$P(B_i^c|A)=0.1$，$P(B_i^c|A^c)=0.95$以及$P(B_i|A^c)=0.05$。我们要计算$P(A|B_1,B_2,B_3^c)$：
+
+$$
+\begin{align*}
+P(A|B_1,B_2,B_3^c) &= \frac{P(A)P(B_1,B_2,B_3^c|A)}{P(B_1,B_2,B_3^c)} \\
+&=\frac{P(A)P(B_1,B_2,B_3^c|A)}{P(A)P(B_1,B_2,B_3^c|A) + P(A^c)P(B_1,B_2,B_3^c|A^c)} \\
+&=\frac{P(A)P(B_1|A)P(B_2|A)P(B_3|A)}{P(A)P(B_1|A)P(B_2|A)P(B_3^c|A) 
++ P(A^c)P(B_1|A^c)P(B_2|A^c)P(B_3^c|A^c)} \\
+&= \frac{0.5*0.9^2*0.1}{0.5*0.9^2*0.1 + 0.5*0.05^2*0.95} \\
+&\approx 0.9715
+\end{align*}
+$$
+
 # Independence and conditional independence
 
 # Monty Hall
